@@ -15,8 +15,7 @@ const varientType = {
   secondary: "bg-[#e0e7ff] text-purple-600",
 };
 
-const defaultStyle =
-  "rounded-md m-2 flex items-center font-medium cursor-pointer justify-center transition-all duration-150";
+const defaultStyle = `rounded-md m-2 flex items-center font-medium cursor-pointer justify-center transition-all duration-150`;
 
 const sizeStyle = {
   sm: "py-1 px-2",

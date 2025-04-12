@@ -12,12 +12,15 @@ import { ShareLink } from "./Sharelink";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { Navigate } from "react-router-dom";
+import { BotIcon } from "../components/bot";
+import { BotChat } from "./BotChat";
 
 function Dashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [shareLinkOpen, setShareLinkOpen] = useState<boolean>(false);
   const [shareLink, setShareLink] = useState<string>("");
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "all");
+  const [talk, setTalk] = useState(false);
 
   const { username, content } = useContent();
 
@@ -95,7 +98,14 @@ function Dashboard() {
               />
             </div>
           </div>
-          <div className="flex gap-4 flex-wrap">{filterContent}</div>
+          <div className="flex gap-4 flex-wrap">
+            {filterContent}
+            {filterContent}
+            {filterContent}
+            {filterContent}
+          </div>
+          {talk && <BotChat />}
+          <BotIcon onClick={() => setTalk((prev) => !prev)} />
         </div>
       </div>
     </>
