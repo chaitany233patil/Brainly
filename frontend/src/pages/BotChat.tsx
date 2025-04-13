@@ -37,7 +37,7 @@ export function BotChat() {
   }
   return (
     <div className=" absolute bottom-20 right-30">
-      <div className="bg-[#e0e7ff] h-140 w-160 rounded-3xl p-3 flex flex-col justify-between">
+      <div className="bg-[#e0e7ff] h-140 w-120 rounded-3xl p-3 flex flex-col justify-between">
         <div
           className="flex flex-col overflow-auto no-scrollbar"
           ref={scrollRef}

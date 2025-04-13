@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BotButtonIcon } from "../icons/BotButtonIcon";
+import { BotButtonCloseIcon } from "../icons/BotClose";
 
 interface BotIconType {
   onClick: () => void;
@@ -14,7 +16,7 @@ export function BotIcon(props: BotIconType) {
       }}
       className="bg-[#332c93] absolute  bottom-10 right-10 text-white p-3 text-2xl font-bold rounded-tl-4xl rounded-bl-4xl rounded-tr-4xl cursor-pointer"
     >
-      {close ? "close" : "bot"}
+      {close ? <BotButtonCloseIcon /> : <BotButtonIcon />}
     </div>
   );
 }
