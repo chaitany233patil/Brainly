@@ -3,6 +3,7 @@ import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { CopyIcon } from "../icons/CopyIcon";
 import { CopyDone } from "../icons/CopyDone";
+import { motion } from "framer-motion";
 
 export const ShareLink = (props: {
   onClose: () => void;
@@ -18,7 +19,10 @@ export const ShareLink = (props: {
         className="absolute h-screen w-screen flex justify-center items-center"
         onClick={props.onClose}
       >
-        <div
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="bg-white p-4 rounded-2xl flex flex-col items-center"
           onClick={(e) => e.stopPropagation()}
         >
@@ -54,7 +58,7 @@ export const ShareLink = (props: {
             fullsize="w-[95%]"
             onClick={props.onClose}
           />
-        </div>
+        </motion.div>
       </div>
     </>
   );

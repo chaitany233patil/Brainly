@@ -6,3 +6,11 @@
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+@keyframes popUp {
+    from {
+        transform: scale(60%);
+    } to {
+        transform: scale(100%);
+    }
+}

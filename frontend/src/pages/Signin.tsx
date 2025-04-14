@@ -4,6 +4,7 @@ import { Input } from "../components/ui/Input";
 import { BACKEND_URL } from "../config";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const Signin = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -34,7 +35,12 @@ export const Signin = () => {
     <>
       <div className="h-screen w-screen absolute bg-gray-600 opacity-90"></div>
       <div className="absolute h-screen w-screen flex justify-center items-center ">
-        <div className="bg-white p-4 rounded-2xl flex flex-col items-center">
+        <motion.div
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="bg-white p-4 rounded-2xl flex flex-col items-center"
+        >
           <div className="font-medium text-xl mb-3">SiginIn</div>
           <Input type="text" placeholder="Username" reference={usernameRef} />
           <Input
@@ -49,7 +55,7 @@ export const Signin = () => {
             fullsize="w-[95%]"
             onClick={signin}
           />
-        </div>
+        </motion.div>
       </div>
     </>
   );

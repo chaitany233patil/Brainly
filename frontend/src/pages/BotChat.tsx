@@ -5,15 +5,18 @@ export function BotChat() {
   const messageRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [Messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content: "Hello! How can I help you today?",
-    },
-  ]);
+  const [Messages, setMessages] = useState(
+    JSON.parse(localStorage.getItem("Messages") as string) || [
+      {
+        role: "assistant",
+        content: "Hello! How can I help you today?",
+      },
+    ]
+  );
+
+  // localStorage.setItem("Messages", JSON.stringify(Messages));
 
   useEffect(() => {
-    console.log("hii");
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
         top: scrollRef.current.scrollHeight,

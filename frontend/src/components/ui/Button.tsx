@@ -11,8 +11,10 @@ export interface buttonProps {
 }
 
 const varientType = {
-  primary: "bg-[#5046e4] text-white hover:bg-[#6259f0]",
-  secondary: "bg-[#e0e7ff] text-purple-600",
+  primary:
+    "bg-[#5046e4] text-white hover:bg-[#6259f0] inset-shadow-sm inset-shadow-[#190be6]-500 ring-1",
+  secondary:
+    "bg-[#e0e7ff] text-purple-600 inset-shadow-sm inset-shadow-indigo-500/50 ring-1",
 };
 
 const defaultStyle = `rounded-md m-2 flex items-center font-medium cursor-pointer justify-center transition-all duration-150`;

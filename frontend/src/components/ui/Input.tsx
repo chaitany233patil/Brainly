@@ -1,7 +1,7 @@
 interface InputProps {
   placeholder: string;
   type: string;
-  required?: string;
+  required?: boolean;
   reference?: React.RefObject<HTMLInputElement>;
   value?: string;
 }

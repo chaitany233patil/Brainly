@@ -5,6 +5,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { DropDown } from "../components/ui/DropDown";
 import { CloseIcon } from "../icons/CloseIcon";
+import { motion } from "framer-motion";
 
 export const NewContentForm = (props: { onClose: () => void }) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -48,8 +49,11 @@ export const NewContentForm = (props: { onClose: () => void }) => {
         onClick={props.onClose}
       >
         0
-        <div
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90"
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 animate-[popUp]"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="self-end cursor-pointer" onClick={props.onClose}>
@@ -76,7 +80,6 @@ export const NewContentForm = (props: { onClose: () => void }) => {
           ) : type == "Other" ? (
             <>
               <Input type="text" placeholder="Title" reference={titleRef} />
-              <Input type="text" placeholder="link" reference={linkRef} />
               <textarea
                 ref={textAreaRef}
                 placeholder="Description"
@@ -94,7 +97,7 @@ export const NewContentForm = (props: { onClose: () => void }) => {
             fullsize="w-[95%]"
             onClick={addContent}
           />
-        </div>
+        </motion.div>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { Tag } from "../Tag";
 import { DeleteIcon } from "../../icons/DeleteIcon";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
+import { motion } from "framer-motion";
 
 interface cardProps {
   type: "Youtube" | "Twitter" | "Text" | "Other";
@@ -29,8 +30,22 @@ export const Card = (props: cardProps) => {
     window.location.href = "http://localhost:5173";
   }
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+        delay: typeof props.index === "number" ? props.index * 0.1 : 0, // stagger effect
+      },
+    },
+  };
+
   return (
-    <div>
+    <motion.div variants={cardVariants} initial="hidden" animate="show">
       <div
         key={props.index}
         className="max-w-72 min-w-72 border-1 border-gray-200 rounded-xl p-4 bg-white"
@@ -41,7 +56,7 @@ export const Card = (props: cardProps) => {
             <span className="font-medium">{props.title}</span>
           </div>
           <div className="flex items-center text-gray-600 gap-2">
-            {props.type != "Text" ? (
+            {props.type != "Other" ? (
               <a href={props.link} target="_blank">
                 <ShareIcon size={"md"} />
               </a>
@@ -91,6 +106,6 @@ export const Card = (props: cardProps) => {
           <Tag title={"nvidia"} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
