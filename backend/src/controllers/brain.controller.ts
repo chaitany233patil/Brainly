@@ -19,7 +19,6 @@ export const BrainShare = async (req: Request, res: Response) => {
         return;
       }
       const hash = random(10);
-      console.log(hash);
       await Link.create({
         hash: hash,
         userId: user?._id,

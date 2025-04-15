@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function BotChat() {
   const messageRef = useRef<HTMLInputElement>(null);
   const sendRef = useRef<HTMLButtonElement>(null);
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const [Messages, setMessages] = useState(
     JSON.parse(localStorage.getItem("Messages") as string) || [
@@ -65,20 +65,22 @@ export function BotChat() {
           className="flex flex-col overflow-auto no-scrollbar"
           ref={scrollRef}
         >
-          {Messages.map((message, idx) => {
-            return (
-              <span
-                key={idx}
-                className={`bg-white p-3 rounded-2xl mb-2 ${
-                  message.role == "assistant"
-                    ? "self-start mr-15"
-                    : "self-end ml-15"
-                }`}
-              >
-                {message.content}
-              </span>
-            );
-          })}
+          {Messages.map(
+            (message: { content: string; role: string }, idx: number) => {
+              return (
+                <span
+                  key={idx}
+                  className={`bg-white p-3 rounded-2xl mb-2 ${
+                    message.role == "assistant"
+                      ? "self-start mr-15"
+                      : "self-end ml-15"
+                  }`}
+                >
+                  {message.content}
+                </span>
+              );
+            }
+          )}
           {loading && (
             <span className="bg-white p-3 rounded-2xl mb-2 self-start mr-30">
               Responding...
