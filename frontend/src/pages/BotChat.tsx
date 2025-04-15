@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import getBotResponse from "../ai";
 import { motion } from "framer-motion";
-import { send } from "vite";
 
 export function BotChat() {
   const messageRef = useRef<HTMLInputElement>(null);
