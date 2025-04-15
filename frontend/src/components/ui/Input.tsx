@@ -19,6 +19,7 @@ export const Input = (props: InputProps) => {
         />
       ) : (
         <input
+          required
           ref={props.reference}
           className="border-2 border-gray-300 p-2 w-80 rounded-lg m-2"
           type={props.type}

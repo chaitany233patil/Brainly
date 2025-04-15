@@ -98,12 +98,7 @@ function Dashboard() {
               />
             </div>
           </div>
-          <div className="flex gap-4 flex-wrap">
-            {filterContent}
-            {filterContent}
-            {filterContent}
-            {filterContent}
-          </div>
+          <div className="flex gap-4 flex-wrap">{filterContent}</div>
           {talk && <BotChat />}
           <BotIcon onClick={() => setTalk((prev) => !prev)} />
         </div>

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import axios from "axios";
@@ -17,10 +17,11 @@ export const Signup = () => {
 
   async function signup() {
     try {
-      await axios.post(`${BACKEND_URL}/signup`, {
-        username: usernameRef.current.value,
-        password: passwordRef.current.value,
-      });
+      if (usernameRef.current.value && passwordRef.current.value)
+        await axios.post(`${BACKEND_URL}/signup`, {
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+        });
       alert("signup successfull");
       navigate("/signin");
     } catch (e) {
@@ -39,25 +40,27 @@ export const Signup = () => {
           className="bg-white p-4 rounded-2xl flex flex-col items-center"
         >
           <div className="font-medium text-xl mb-3">SignUp</div>
-          <Input type="text" placeholder="Username" reference={usernameRef} />
-          <Input
-            type="password"
-            placeholder="password"
-            reference={passwordRef}
-          />
-          <p className="text-sm text-gray-500 m-2">
-            already signup{" "}
-            <a className="text-blue-500 underline" href={`/signin`}>
-              Click here
-            </a>
-          </p>
-          <Button
-            varient="primary"
-            size="md"
-            text="signup"
-            fullsize="w-[95%]"
-            onClick={signup}
-          />
+          <form className="flex flex-col items-center">
+            <Input type="text" placeholder="Username" reference={usernameRef} />
+            <Input
+              type="password"
+              placeholder="password"
+              reference={passwordRef}
+            />
+            <p className="text-sm text-gray-500 m-2">
+              already signup{" "}
+              <a className="text-blue-500 underline" href={`/signin`}>
+                Click here
+              </a>
+            </p>
+            <Button
+              varient="primary"
+              size="md"
+              text="signup"
+              fullsize="w-[95%]"
+              onClick={signup}
+            />
+          </form>
         </motion.div>
       </div>
     </>
