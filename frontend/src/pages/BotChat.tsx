@@ -6,6 +6,7 @@ export function BotChat() {
   const messageRef = useRef<HTMLInputElement>(null);
   const sendRef = useRef<HTMLButtonElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
   const [loading, setLoading] = useState(false);
   const [Messages, setMessages] = useState(
     JSON.parse(localStorage.getItem("Messages") as string) || [
@@ -16,8 +17,6 @@ export function BotChat() {
     ]
   );
 
-  // localStorage.setItem("Messages", JSON.stringify(Messages));
-
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
@@ -27,20 +26,31 @@ export function BotChat() {
     }
   }, [Messages]);
 
+  useEffect(() => {
+    localStorage.setItem("Messages", JSON.stringify(Messages));
+  }, [Messages]);
+
   async function getResponse() {
+    if (!messageRef.current?.value.trim()) return;
     setLoading(true);
-    //@ts-ignore
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", content: messageRef.current?.value },
-    ]);
-    const res = await getBotResponse(messageRef.current?.value as string);
-    console.log(res);
-    (messageRef.current as HTMLInputElement).value = "";
-    //@ts-ignore
-    setMessages((prev) => [...prev, res]);
+
+    const userMessage = messageRef.current.value;
+
+    // Add user message
+    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+
+    const botReply = await getBotResponse(userMessage);
+    console.log(botReply);
+
+    // Clear input
+    messageRef.current.value = "";
+
+    // Add assistant message
+    setMessages((prev) => [...prev, { role: "assistant", content: botReply }]);
+
     setLoading(false);
   }
+
   return (
     <motion.div
       initial={{
@@ -58,28 +68,26 @@ export function BotChat() {
       transition={{
         duration: 0.3,
       }}
-      className=" absolute bottom-18 right-20"
+      className="absolute bottom-18 right-20"
     >
-      <div className="bg-[#e0e7ff] h-140 max-w-100 flex rounded-3xl p-3 flex flex-col justify-between">
+      <div className="bg-[#e0e7ff] h-140 max-w-100 flex flex-col rounded-3xl p-3 justify-between">
         <div
           className="flex flex-col overflow-auto no-scrollbar"
           ref={scrollRef}
         >
           {Messages.map(
-            (message: { content: string; role: string }, idx: number) => {
-              return (
-                <span
-                  key={idx}
-                  className={`bg-white p-3 rounded-2xl mb-2 ${
-                    message.role == "assistant"
-                      ? "self-start mr-15"
-                      : "self-end ml-15"
-                  }`}
-                >
-                  {message.content}
-                </span>
-              );
-            }
+            (message: { content: string; role: string }, idx: number) => (
+              <span
+                key={idx}
+                className={`bg-white p-3 rounded-2xl mb-2 ${
+                  message.role === "assistant"
+                    ? "self-start mr-15"
+                    : "self-end ml-15"
+                }`}
+              >
+                {message.content}
+              </span>
+            )
           )}
           {loading && (
             <span className="bg-white p-3 rounded-2xl mb-2 self-start mr-30">
@@ -87,14 +95,15 @@ export function BotChat() {
             </span>
           )}
         </div>
-        <div className="flex gap-2">
+
+        <div className="flex gap-2 mt-2">
           <input
             ref={messageRef}
             className="flex-1 border-1 border-gray-200 rounded-2xl bg-amber-50 p-3"
             type="text"
             placeholder="Ask anything"
             onKeyDown={(e) =>
-              e.key == "Enter" && messageRef.current?.value.trim() != ""
+              e.key === "Enter" && messageRef.current?.value.trim() !== ""
                 ? sendRef.current?.click()
                 : null
             }
@@ -104,7 +113,7 @@ export function BotChat() {
             onClick={getResponse}
             className="p-2 border-2 rounded-2xl border-gray-200 bg-[#5046e4] text-xl text-white cursor-pointer"
           >
-            send
+            Send
           </button>
         </div>
       </div>

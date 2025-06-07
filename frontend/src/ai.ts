@@ -1,40 +1,40 @@
 import { HfInference } from "@huggingface/inference";
 
-let previusReply: string = "";
+const hf = new HfInference(import.meta.env.VITE_HF_ACCESS_TOKEN);
 
 const SYSTEM_PROMPT = `
-You are a helpful and concise AI assistant. Answer questions accurately but keep your responses short and to the point. Avoid unnecessary detail. When possible, use simple language. Limit replies to 2-3 sentences max unless absolutely necessary.
-${previusReply} 
+You are a helpful and concise AI assistant. 
+Answer questions accurately but keep your responses short and to the point. 
+Avoid unnecessary detail. Use simple language when possible.
 `;
-
-const hf = new HfInference(import.meta.env.VITE_HF_ACCESS_TOKEN);
 
 export default async function getBotResponse(userMessage: string) {
   try {
-    const response = await hf.chatCompletion({
+    const prompt = `
+${SYSTEM_PROMPT}
+User: ${userMessage}
+AI:
+    `.trim();
+
+    const response = await hf.textGeneration({
       model: "mistralai/Mistral-7B-Instruct-v0.3",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: userMessage },
-      ],
-      max_tokens: 1024,
+      inputs: prompt,
+      parameters: {
+        max_new_tokens: 150,
+        temperature: 0.7,
+        stop: ["User:", "AI:"],
+      },
     });
 
-    const result = response.choices[0].message;
-    previusReply += result;
-    // let currContent = "";
-    // for (let i = 0; i < result.length; i++) {
-    //   currContent += result[i];
-    //   onUpdate(currContent);
-    //   await new Promise((resolve) => setTimeout(resolve, 10));
-    // }
+    const result =
+      response.generated_text
+        .split("AI:")
+        .pop()
+        ?.trim() || "Sorry, I couldn't understand that.";
 
-    // generateBtn.innerText = "Generate New Recipe";
-    // generateBtn.style.backgroundColor = "#d17557";
-    // generateBtn.style.opacity = "1";
-    // generateBtn.disabled = false;
     return result;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
+    return "Sorry, I could not get a response.";
   }
 }
