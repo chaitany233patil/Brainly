@@ -71,6 +71,12 @@ export function BotChat() {
       className="absolute bottom-18 right-20"
     >
       <div className="bg-[#e0e7ff] h-140 max-w-100 flex flex-col rounded-3xl p-3 justify-between">
+        <button
+          onClick={() => localStorage.removeItem("Messages")}
+          className="absolute right-4 bg-gray-500 text-white text-[10px] p-1 rounded cursor-pointer"
+        >
+          Clear Chat
+        </button>
         <div
           className="flex flex-col overflow-auto no-scrollbar"
           ref={scrollRef}

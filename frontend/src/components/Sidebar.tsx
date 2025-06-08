@@ -1,5 +1,6 @@
 import { BrainIcon } from "../icons/Brain";
 import { DocumentIcon } from "../icons/DocumentIcon";
+import { LogOutIcon } from "../icons/LogOut";
 import { TwitterIcon } from "../icons/Twitter";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { SidebarItem } from "./ui/SidebarItem";
@@ -34,12 +35,13 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
         </div>
       </div>
       <div
-        className="absolute bottom-8 left-22 cursor-pointer text-gray-500 hover:text-gray-800 underline"
+        className="absolute bottom-6 cursor-pointer text-gray-500 hover:text-gray-800 underline flex gap-2 ml-8 "
         onClick={() => {
           window.location.href = "http://localhost:5173";
           localStorage.removeItem("token");
         }}
       >
+        <LogOutIcon />
         LogOut
       </div>
     </div>
