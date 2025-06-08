@@ -30,7 +30,7 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
         <div onClick={() => changeFilter("Youtube")}>
           <SidebarItem icon={<YoutubeIcon />} text={"Videos"} />
         </div>
-        <div onClick={() => changeFilter("Other")}>
+        <div onClick={() => changeFilter("Text")}>
           <SidebarItem icon={<DocumentIcon />} text={"Document"} />
         </div>
       </div>

@@ -56,7 +56,7 @@ export const Card = (props: cardProps) => {
             <span className="font-medium">{props.title}</span>
           </div>
           <div className="flex items-center text-gray-600 gap-2">
-            {props.type != "Other" ? (
+            {props.type != "Other" && props.type != "Text" ? (
               <a href={props.link} target="_blank">
                 <ShareIcon size={"md"} />
               </a>
@@ -88,7 +88,7 @@ export const Card = (props: cardProps) => {
             </blockquote>
           </div>
         )}
-        {props.type == "Other" && (
+        {(props.type == "Other" || props.type == "Text") && (
           <div className="overflow-hidden max-h-[250px] mb-4">
             <div className="m-3">
               <p>{props.link}</p>
