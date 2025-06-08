@@ -37,7 +37,11 @@ export function BotChat() {
     const userMessage = messageRef.current.value;
 
     // Add user message
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    setMessages((prev: { role: string; content: string }) => [
+      //@ts-ignore
+      ...prev,
+      { role: "user", content: userMessage },
+    ]);
 
     const botReply = await getBotResponse(userMessage);
     console.log(botReply);
@@ -46,7 +50,11 @@ export function BotChat() {
     messageRef.current.value = "";
 
     // Add assistant message
-    setMessages((prev) => [...prev, { role: "assistant", content: botReply }]);
+    setMessages((prev: { role: string; content: string }) => [
+      //@ts-ignore
+      ...prev,
+      { role: "assistant", content: botReply },
+    ]);
 
     setLoading(false);
   }
@@ -68,7 +76,7 @@ export function BotChat() {
       transition={{
         duration: 0.3,
       }}
-      className="absolute bottom-18 right-20"
+      className="absolute md:bottom-18 md:right-20 bottom-25 right-10"
     >
       <div className="bg-[#e0e7ff] h-140 max-w-100 flex flex-col rounded-3xl p-3 justify-between">
         <button

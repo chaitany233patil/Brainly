@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { ShareIcon } from "../../icons/ShareIcon";
-import { Tag } from "../Tag";
+import { Tag } from "./Tag";
 import { DeleteIcon } from "../../icons/DeleteIcon";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";

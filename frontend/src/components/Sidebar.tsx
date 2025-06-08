@@ -11,19 +11,19 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
     props.setFilter(filter);
   }
   return (
-    <div className="w-60 h-screen fixed">
+    <div className="h-screen fixed md:w-60 ">
       <div className="text-2xl flex items-center p-2">
-        <div className="text-purple-600 pl-3 pr-2 mt-3">
+        <div className="text-purple-600 md:pl-3 pr-2 mt-3">
           <BrainIcon />
         </div>
         <div
-          className="font-medium text-2xl ml-1 mt-2.5 cursor-pointer"
+          className="font-medium text-2xl ml-1 mt-2.5 cursor-pointer md:block hidden"
           onClick={() => changeFilter("all")}
         >
           Brainly
         </div>
       </div>
-      <div className="p-2 ml-8 ">
+      <div className="p-2 md:ml-8 ">
         <div onClick={() => changeFilter("Twitter")}>
           <SidebarItem icon={<TwitterIcon width={"22"} />} text={"Tweets"} />
         </div>
@@ -35,14 +35,14 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
         </div>
       </div>
       <div
-        className="absolute bottom-6 cursor-pointer text-gray-500 hover:text-gray-800 underline flex gap-2 ml-8 "
+        className="absolute flex flex-row bottom-6 cursor-pointer text-gray-500 hover:text-gray-800 underline gap-2 items-center md:ml-8 ml-5"
         onClick={() => {
           window.location.href = "http://localhost:5173";
           localStorage.removeItem("token");
         }}
       >
         <LogOutIcon />
-        LogOut
+        <span className="md:block hidden">LogOut</span>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ export const Button = (props: buttonProps) => {
       onClick={props.onClick}
     >
       {props.startIcon ? <div className="mr-1">{props.startIcon}</div> : null}
-      {props.text}
+      <span>{props.text}</span>
     </button>
   );
 };

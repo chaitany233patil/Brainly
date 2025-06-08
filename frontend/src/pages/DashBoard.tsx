@@ -73,8 +73,8 @@ function Dashboard() {
       {isOpen && <NewContentForm onClose={() => setIsOpen(false)} />}
       <div className="w-screen h-screen flex">
         <Sidebar setFilter={setFilter} />
-        <div className="ml-60 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
-          <div className="w-full flex justify-between items-center my-3 mb-5">
+        <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
+          <div className="w-full justify-between items-center my-3 mb-5 flex">
             <div className="text-xl font-medium ml-2">
               Welcome, {username} 👋
             </div>
@@ -89,13 +89,15 @@ function Dashboard() {
                   getBrainLink(true);
                 }}
               />
-              <Button
-                varient="primary"
-                text={"Add Content"}
-                size={"sm"}
-                startIcon={<PlusIcon size={"md"} />}
-                onClick={() => setIsOpen(true)}
-              />
+              <span className="sm:block hidden">
+                <Button
+                  varient="primary"
+                  text={"Add Content"}
+                  size={"sm"}
+                  startIcon={<PlusIcon size={"lg"} />}
+                  onClick={() => setIsOpen(true)}
+                />
+              </span>
             </div>
           </div>
           <div className="flex gap-4 flex-wrap">{filterContent}</div>
