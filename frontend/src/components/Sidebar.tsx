@@ -4,12 +4,14 @@ import { LogOutIcon } from "../icons/LogOut";
 import { TwitterIcon } from "../icons/Twitter";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { SidebarItem } from "./ui/SidebarItem";
+import { useNavigate } from "react-router-dom";
 
 export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
   function changeFilter(filter: string) {
     localStorage.setItem("filter", filter);
     props.setFilter(filter);
   }
+  const navigate = useNavigate();
   return (
     <div className="h-screen fixed md:w-60 ">
       <div className="text-2xl flex items-center p-2">
@@ -52,8 +54,8 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
       <div
         className="absolute flex flex-row bottom-6 cursor-pointer text-gray-500 hover:text-gray-800 underline gap-2 items-center md:ml-8 ml-5"
         onClick={() => {
-          window.location.href = "http://localhost:5173";
           localStorage.removeItem("token");
+          navigate("/signin");
         }}
       >
         <LogOutIcon />
