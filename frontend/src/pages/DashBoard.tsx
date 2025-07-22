@@ -10,7 +10,6 @@ import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { TwitterIcon } from "../icons/Twitter";
 import { ShareLink } from "./Sharelink";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { Navigate } from "react-router-dom";
 import { BotIcon } from "../components/bot";
 import { BotChat } from "./BotChat";
@@ -22,7 +21,7 @@ function Dashboard() {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "all");
   const [talk, setTalk] = useState(false);
 
-  const { username, content } = useContent();
+  const { content } = useContent();
 
   if (
     localStorage.getItem("token") == "undefined" ||
@@ -33,7 +32,7 @@ function Dashboard() {
 
   async function getBrainLink(isShare: boolean) {
     const response = await axios.post(
-      `${BACKEND_URL}/brain/share`,
+      `${import.meta.env.VITE_BACKEND_URI}/brain/share`,
       { isShare: isShare },
       {
         headers: {
@@ -75,13 +74,11 @@ function Dashboard() {
         <Sidebar setFilter={setFilter} />
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
           <div className="w-full justify-between items-center my-3 mb-5 flex">
-            <div className="text-xl font-medium ml-2">
-              Welcome, {username} 👋
-            </div>
+            <div className="text-xl font-medium ml-2">Welcome, 👋</div>
             <div className="flex mr-6">
               <Button
                 varient="secondary"
-                text={"Share Brain"}
+                text={window.innerWidth >= 640 ? "Share Brain" : ""}
                 size={"sm"}
                 startIcon={<ShareIcon size={"md"} />}
                 onClick={() => {
@@ -89,10 +86,10 @@ function Dashboard() {
                   getBrainLink(true);
                 }}
               />
-              <span className="sm:block hidden">
+              <span>
                 <Button
                   varient="primary"
-                  text={"Add Content"}
+                  text={window.innerWidth >= 640 ? "Add Content" : ""}
                   size={"sm"}
                   startIcon={<PlusIcon size={"lg"} />}
                   onClick={() => setIsOpen(true)}

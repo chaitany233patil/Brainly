@@ -8,20 +8,23 @@ export const signup = async (req: Request, res: Response) => {
   try {
     const isSchemaValid: any = userSchema.safeParse(req.body);
     if (!isSchemaValid.success) {
-      res.status(411).send({
+      res.status(411).json({
+        success: true,
         message: isSchemaValid.error.flatten().fieldErrors.password[0],
       });
       return;
     }
 
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
     const hashPassword: string = await bcrypt.hash(password, 5);
     await User.create({
       username,
       password: hashPassword,
+      email,
     });
 
     res.status(200).json({
+      success: true,
       message: "signup succefully",
     });
   } catch (err) {
@@ -40,17 +43,20 @@ export const signin = async (req: Request, res: Response) => {
     if (hashPassword) {
       const token = jwt.sign(user?.id, process.env.JWT_SECRETE as string);
       res.send({
+        success: true,
         token,
       });
       return;
     }
     res.status(400).send({
-      message: "User Does Not Exist!",
+      success: false,
+      message: "username or password is incorrect!",
     });
     return;
   } catch (e) {
     res.send({
-      message: "User Does Not Exist!",
+      success: false,
+      message: "username or password is incorrect!",
     });
   }
 };

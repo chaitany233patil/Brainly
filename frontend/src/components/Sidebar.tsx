@@ -13,7 +13,10 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
   return (
     <div className="h-screen fixed md:w-60 ">
       <div className="text-2xl flex items-center p-2">
-        <div className="text-purple-600 md:pl-3 pr-2 mt-3">
+        <div
+          className="text-purple-600 md:pl-3 pr-2 mt-3"
+          onClick={() => changeFilter("all")}
+        >
           <BrainIcon />
         </div>
         <div
@@ -25,13 +28,25 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
       </div>
       <div className="p-2 md:ml-8 ">
         <div onClick={() => changeFilter("Twitter")}>
-          <SidebarItem icon={<TwitterIcon width={"22"} />} text={"Tweets"} />
+          <SidebarItem
+            icon={<TwitterIcon width={"22"} />}
+            text={"Tweets"}
+            isActive={"Twitter" == localStorage.getItem("filter")}
+          />
         </div>
         <div onClick={() => changeFilter("Youtube")}>
-          <SidebarItem icon={<YoutubeIcon />} text={"Videos"} />
+          <SidebarItem
+            icon={<YoutubeIcon />}
+            text={"Videos"}
+            isActive={"Youtube" == localStorage.getItem("filter")}
+          />
         </div>
         <div onClick={() => changeFilter("Text")}>
-          <SidebarItem icon={<DocumentIcon />} text={"Document"} />
+          <SidebarItem
+            icon={<DocumentIcon />}
+            text={"Document"}
+            isActive={"Text" == localStorage.getItem("filter")}
+          />
         </div>
       </div>
       <div

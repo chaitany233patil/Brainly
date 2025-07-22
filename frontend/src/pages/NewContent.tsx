@@ -1,11 +1,11 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { DropDown } from "../components/ui/DropDown";
 import { CloseIcon } from "../icons/CloseIcon";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export const NewContentForm = (props: { onClose: () => void }) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -13,19 +13,57 @@ export const NewContentForm = (props: { onClose: () => void }) => {
   const typeRef = useRef<HTMLInputElement | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [type, setType] = useState("");
+  const [error, setError] = useState<string>("");
+
+  const navigate = useNavigate();
 
   function typeChange() {
     setType(typeRef.current?.value || "");
     console.log(textAreaRef.current?.value);
   }
 
+  const validateForm = (): boolean => {
+    if (type == "Youtube" || type == "Twitter") {
+    }
+    if (!titleRef.current!.value) {
+      setError("Title is required");
+      return false;
+    } else if (type == "Youtube" || type == "Twitter") {
+      if (!linkRef.current!.value) {
+        setError("Link is required");
+        return false;
+      }
+    } else if (type == "Text" || type == "Other") {
+      if (!textAreaRef.current!.value) {
+        setError("Description is required");
+        return false;
+      }
+    }
+    return true;
+  };
+
   async function addContent() {
+    if (!validateForm()) return;
+    setError("");
+
     try {
+      let newLink = "";
+      console.log(textAreaRef.current?.value);
+      if (type == "Youtube" && linkRef.current?.value) {
+        newLink = linkRef.current?.value
+          .replace("youtu.", "youtu")
+          .replace("e/", "e.com/watch?v=")
+          .split("&")[0]
+          .split("?si")[0];
+      } else {
+        newLink = textAreaRef.current!.value;
+      }
+
       await axios.post(
-        `${BACKEND_URL}/content`,
+        `${import.meta.env.VITE_BACKEND_URI}/content`,
         {
           title: titleRef.current?.value,
-          link: linkRef.current?.value || textAreaRef.current?.value,
+          link: textAreaRef.current?.value || newLink,
           type: typeRef.current?.value,
         },
         {
@@ -34,7 +72,8 @@ export const NewContentForm = (props: { onClose: () => void }) => {
           },
         }
       );
-      window.location.href = "http://localhost:5173";
+      navigate("/");
+      window.location.reload();
       props.onClose();
     } catch (e) {
       alert("Please fill all information");
@@ -43,27 +82,43 @@ export const NewContentForm = (props: { onClose: () => void }) => {
 
   return (
     <>
-      <div className="h-screen w-screen absolute bg-gray-600 opacity-90"></div>
+      <div className="inset-0 absolute bg-gray-500 opacity-90 z-10"></div>
       <div
-        className="absolute h-screen w-screen flex justify-center items-center"
+        className="absolute inset-0 flex justify-center items-center z-10"
         onClick={props.onClose}
       >
-        0
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 animate-[popUp]"
+          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-70  sm:min-w-sm animate-[popUp]"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="self-end cursor-pointer" onClick={props.onClose}>
-            <CloseIcon size={"size-7"} />
+          <div
+            className="self-end cursor-pointer hover:bg-gray-500/40 p-2 rounded-sm"
+            onClick={props.onClose}
+          >
+            <CloseIcon size={"size-6"} />
           </div>
           <div className="font-medium text-xl mb-3">Add New Content</div>
           <DropDown reference={typeRef} onChange={typeChange} />
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-2 bg-red-50 border border-red-200 text-red-700 w-full px-4 py-3 rounded-md text-sm"
+            >
+              {error}
+            </motion.div>
+          )}
           {type == "Youtube" || type == "Twitter" ? (
             <>
-              <Input type="text" placeholder="Title" reference={titleRef} />
+              <Input
+                type="text"
+                placeholder="Title"
+                reference={titleRef}
+                className="mb-2 "
+              />
               <Input type="text" placeholder="link" reference={linkRef} />
             </>
           ) : type == "Text" ? (
@@ -74,27 +129,28 @@ export const NewContentForm = (props: { onClose: () => void }) => {
                 placeholder="Description"
                 cols={37}
                 rows={9}
-                className="p-3 border-2 border-gray-300 rounded-lg"
+                className="mt-2 mb-2 p-3 w-full border-2 border-gray-300 rounded-lg"
               />
             </>
           ) : type == "Other" ? (
             <>
               <Input type="text" placeholder="Title" reference={titleRef} />
               <textarea
-                ref={textAreaRef}
+                //@ts-ignore
+                ref={linkRef}
                 placeholder="Description"
                 cols={37}
                 rows={9}
-                className="p-3 border-2 border-gray-300 rounded-lg"
+                className="mt-2 mb-2 p-2 w-full border-2 border-gray-300 rounded-lg"
               />
             </>
           ) : null}
 
           <Button
             varient="primary"
-            size="md"
+            size="lg"
             text="Add Content"
-            fullsize="w-[95%]"
+            fullsize="w-full"
             onClick={addContent}
           />
         </motion.div>

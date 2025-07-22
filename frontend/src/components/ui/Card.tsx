@@ -5,6 +5,7 @@ import { DeleteIcon } from "../../icons/DeleteIcon";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface cardProps {
   type: "Youtube" | "Twitter" | "Text" | "Other";
@@ -17,6 +18,8 @@ interface cardProps {
 }
 
 export const Card = (props: cardProps) => {
+  const navigate = useNavigate();
+
   async function deleteItem(id: string | undefined) {
     await axios.post(
       `${BACKEND_URL}/content/${id}`,
@@ -27,7 +30,8 @@ export const Card = (props: cardProps) => {
         },
       }
     );
-    window.location.href = "http://localhost:5173";
+    navigate("/");
+    window.location.reload();
   }
 
   const cardVariants = {
@@ -45,10 +49,11 @@ export const Card = (props: cardProps) => {
   };
 
   return (
+    //@ts-ignore
     <motion.div variants={cardVariants} initial="hidden" animate="show">
       <div
         key={props.index}
-        className="max-w-72 min-w-72 border-1 border-gray-200 rounded-xl p-4 bg-white"
+        className="max-w-80 min-w-80 border-1 border-gray-200 rounded-xl p-4 bg-white"
       >
         <div className="flex justify-between">
           <div className="flex items-center">

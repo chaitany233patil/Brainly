@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { Card } from "../components/ui/Card";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { useParams } from "react-router-dom";
 import { BrainIcon } from "../icons/Brain";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { TwitterIcon } from "../icons/Twitter";
 
 export const ShareBrain = () => {
-  const [content, setContent] = useState({});
+  const [content, setContent] = useState([]);
   const [owerner, setOwerner] = useState("");
   const { sharehash } = useParams();
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/brain/share/${sharehash}`).then((res) => {
-      setOwerner(res.data.username);
-      setContent(res.data.content);
-    });
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URI}/brain/share/${sharehash}`)
+      .then((res) => {
+        setOwerner(res.data.username);
+        setContent(res.data.content);
+      });
   }, []);
 
   return (
@@ -27,21 +28,24 @@ export const ShareBrain = () => {
         </div>
         <div className="pt-5 flex gap-4 flex-wrap ">
           {content.length ? (
-            content.map(({ type, title, link }) => (
-              <Card
-                type={type}
-                title={title}
-                link={link}
-                share={true}
-                startIcon={
-                  type == "Youtube" ? (
-                    <YoutubeIcon />
-                  ) : (
-                    <TwitterIcon width="18" />
-                  )
-                }
-              />
-            ))
+            content.map(
+              ({ type, title, link }: any, index: string | number) => (
+                <Card
+                  type={type}
+                  title={title}
+                  link={link}
+                  share={true}
+                  startIcon={
+                    type == "Youtube" ? (
+                      <YoutubeIcon />
+                    ) : (
+                      <TwitterIcon width="18" />
+                    )
+                  }
+                  index={index}
+                />
+              )
+            )
           ) : (
             <div>Page Not Found</div>
           )}

@@ -8,14 +8,12 @@ export function BotChat() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [loading, setLoading] = useState(false);
-  const [Messages, setMessages] = useState(
-    JSON.parse(localStorage.getItem("Messages") as string) || [
-      {
-        role: "assistant",
-        content: "Hello! How can I help you today?",
-      },
-    ]
-  );
+  const [Messages, setMessages] = useState([
+    {
+      role: "assistant",
+      content: "Hello! How can I help you today?",
+    },
+  ]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -26,10 +24,6 @@ export function BotChat() {
     }
   }, [Messages]);
 
-  useEffect(() => {
-    localStorage.setItem("Messages", JSON.stringify(Messages));
-  }, [Messages]);
-
   async function getResponse() {
     if (!messageRef.current?.value.trim()) return;
     setLoading(true);
@@ -37,6 +31,7 @@ export function BotChat() {
     const userMessage = messageRef.current.value;
 
     // Add user message
+    //@ts-ignore
     setMessages((prev: { role: string; content: string }) => [
       //@ts-ignore
       ...prev,
@@ -50,6 +45,7 @@ export function BotChat() {
     messageRef.current.value = "";
 
     // Add assistant message
+    //@ts-ignore
     setMessages((prev: { role: string; content: string }) => [
       //@ts-ignore
       ...prev,
@@ -79,12 +75,6 @@ export function BotChat() {
       className="absolute md:bottom-18 md:right-20 bottom-25 right-10"
     >
       <div className="bg-[#e0e7ff] h-140 max-w-100 flex flex-col rounded-3xl p-3 justify-between">
-        <button
-          onClick={() => localStorage.removeItem("Messages")}
-          className="absolute right-4 bg-gray-500 text-white text-[10px] p-1 rounded cursor-pointer"
-        >
-          Clear Chat
-        </button>
         <div
           className="flex flex-col overflow-auto no-scrollbar"
           ref={scrollRef}

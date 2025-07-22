@@ -8,6 +8,9 @@ export interface buttonProps {
   endIcon?: ReactElement;
   onClick?: () => void;
   fullsize?: string;
+  disabled?: boolean;
+  className?: string;
+  type?: "submit";
 }
 
 const varientType = {
@@ -28,9 +31,12 @@ const sizeStyle = {
 export const Button = (props: buttonProps) => {
   return (
     <button
+      type={props.type}
       className={`${varientType[props.varient]} ${defaultStyle} ${
         sizeStyle[props.size]
-      } ${props.fullsize}`}
+      } ${props.fullsize} ${props.disabled ? "cursor-not-allowed" : ""} ${
+        props.className
+      }`}
       onClick={props.onClick}
     >
       {props.startIcon ? <div className="mr-1">{props.startIcon}</div> : null}
