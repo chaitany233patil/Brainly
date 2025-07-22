@@ -40,7 +40,7 @@ export const ShareLink = (props: {
               onClick={() => {
                 setCopy(true);
                 navigator.clipboard.writeText(
-                  `http://localhost:5173/api/v1/brain/share/${props.value}`
+                  `https://brainly-k944.vercel.app/api/v1/brain/share/${props.value}`
                 );
               }}
             >
