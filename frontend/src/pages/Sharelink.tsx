@@ -23,7 +23,7 @@ export const ShareLink = (props: {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-[25px] sm:min-w-sm"
+          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 sm:min-w-sm"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="font-medium text-xl mb-3">Share link</div>

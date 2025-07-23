@@ -21,13 +21,28 @@ function Dashboard() {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "all");
   const [talk, setTalk] = useState(false);
 
-  const { content } = useContent();
+  const { content, setContent } = useContent();
 
   if (
     localStorage.getItem("token") == "undefined" ||
     localStorage.getItem("token") == null
   ) {
     return <Navigate to={"/signup"} />;
+  }
+
+  async function deleteItem(id: string | undefined) {
+    setContent((prev) =>
+      prev.filter((item: { _id: string }) => item._id !== id)
+    );
+    await axios.post(
+      `${import.meta.env.VITE_BACKEND_URI}/content/${id}`,
+      {},
+      {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
   }
 
   async function getBrainLink(isShare: boolean) {
@@ -43,11 +58,12 @@ function Dashboard() {
     setShareLink(`${response.data.hash}`);
   }
 
-  const filteredContent =
+  let filteredContent =
     filter === "all" ? content : content.filter(({ type }) => type === filter);
 
   const filterContent = filteredContent.map(({ link, title, type, _id }) => (
     <Card
+      onClick={() => deleteItem(_id)}
       key={_id}
       index={_id}
       id={_id}
@@ -69,7 +85,13 @@ function Dashboard() {
           disbaledShare={() => getBrainLink(false)}
         />
       )}
-      {isOpen && <NewContentForm onClose={() => setIsOpen(false)} />}
+      {isOpen && (
+        <NewContentForm
+          onClose={() => setIsOpen(false)}
+          //@ts-ignore
+          onAdd={(newItem) => setContent((prev) => [newItem, ...prev])}
+        />
+      )}
       <div className="w-screen h-screen flex">
         <Sidebar setFilter={setFilter} />
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">

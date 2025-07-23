@@ -7,19 +7,22 @@ import { CloseIcon } from "../icons/CloseIcon";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export const NewContentForm = (props: { onClose: () => void }) => {
+export const NewContentForm = (props: {
+  onClose: () => void;
+  onAdd: (newItem: any) => void;
+}) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const linkRef = useRef<HTMLInputElement | null>(null);
   const typeRef = useRef<HTMLInputElement | null>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [type, setType] = useState("");
   const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   function typeChange() {
     setType(typeRef.current?.value || "");
-    console.log(textAreaRef.current?.value);
   }
 
   const validateForm = (): boolean => {
@@ -46,10 +49,11 @@ export const NewContentForm = (props: { onClose: () => void }) => {
     if (!validateForm()) return;
     setError("");
 
+    setIsLoading(true);
     try {
       let newLink = "";
       console.log(textAreaRef.current?.value);
-      if (type == "Youtube" && linkRef.current?.value) {
+      if ((type == "Youtube" || type == "Twitter") && linkRef.current?.value) {
         newLink = linkRef.current?.value
           .replace("youtu.", "youtu")
           .replace("e/", "e.com/watch?v=")
@@ -58,22 +62,22 @@ export const NewContentForm = (props: { onClose: () => void }) => {
       } else {
         newLink = textAreaRef.current!.value;
       }
-
-      await axios.post(
+      const data = {
+        title: titleRef.current?.value,
+        link: textAreaRef.current?.value || newLink,
+        type: typeRef.current?.value,
+      };
+      const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URI}/content`,
-        {
-          title: titleRef.current?.value,
-          link: textAreaRef.current?.value || newLink,
-          type: typeRef.current?.value,
-        },
+        data,
         {
           headers: {
             token: localStorage.getItem("token"),
           },
         }
       );
-      navigate("/");
-      window.location.reload();
+      props.onAdd(data);
+      setIsLoading(false);
       props.onClose();
     } catch (e) {
       alert("Please fill all information");
@@ -82,7 +86,7 @@ export const NewContentForm = (props: { onClose: () => void }) => {
 
   return (
     <>
-      <div className="inset-0 absolute bg-gray-500 opacity-90 z-10"></div>
+      <div className="h-screen w-screen absolute bg-gray-500 opacity-90 z-10"></div>
       <div
         className="absolute inset-0 flex justify-center items-center z-10"
         onClick={props.onClose}
@@ -91,7 +95,7 @@ export const NewContentForm = (props: { onClose: () => void }) => {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-70  sm:min-w-sm animate-[popUp]"
+          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90  sm:min-w-sm animate-[popUp]"
           onClick={(e) => e.stopPropagation()}
         >
           <div
@@ -149,7 +153,7 @@ export const NewContentForm = (props: { onClose: () => void }) => {
           <Button
             varient="primary"
             size="lg"
-            text="Add Content"
+            text={isLoading ? "Adding..." : "Add Content"}
             fullsize="w-full"
             onClick={addContent}
           />

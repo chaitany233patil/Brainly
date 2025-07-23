@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const useContent = () => {
-  const [content, setListContent] = useState([]);
+  const [content, setContent] = useState([]);
 
   useEffect(() => {
     axios
@@ -12,8 +12,8 @@ export const useContent = () => {
         },
       })
       .then((res) => {
-        setListContent(res.data.content);
+        setContent(res.data.content);
       });
   }, []);
-  return { content };
+  return { content, setContent };
 };

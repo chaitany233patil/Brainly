@@ -14,25 +14,10 @@ interface cardProps {
   startIcon?: ReactElement;
   share?: boolean;
   index: number | string;
+  onClick?: () => void;
 }
 
 export const Card = (props: cardProps) => {
-  const navigate = useNavigate();
-
-  async function deleteItem(id: string | undefined) {
-    await axios.post(
-      `${import.meta.env.VITE_BACKEND_URI}/content/${id}`,
-      {},
-      {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      }
-    );
-    navigate("/");
-    window.location.reload();
-  }
-
   const cardVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
     show: {
@@ -66,7 +51,7 @@ export const Card = (props: cardProps) => {
               </a>
             ) : null}
             {!props.share && (
-              <div onClick={() => deleteItem(props.id)}>
+              <div onClick={props.onClick}>
                 <DeleteIcon />
               </div>
             )}
