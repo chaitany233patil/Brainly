@@ -22,7 +22,7 @@ export const Card = (props: cardProps) => {
 
   async function deleteItem(id: string | undefined) {
     await axios.post(
-      `${BACKEND_URL}/content/${id}`,
+      `${import.meta.env.VITE_BACKEND_URI}/content/${id}`,
       {},
       {
         headers: {
