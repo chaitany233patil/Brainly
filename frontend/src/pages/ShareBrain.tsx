@@ -22,11 +22,11 @@ export const ShareBrain = () => {
   return (
     <div className="bg-gray-100 h-screen">
       <div className="max-w-[1100px] m-auto pt-6">
-        <div className="text-2xl font-bold border-b-1 border-gray-300 pb-3 text-purple-600 flex">
+        <div className="text-2xl font-bold border-b-1 border-gray-300 pb-3 text-purple-600 flex pl-2">
           <BrainIcon />
           <div className="text-black ml-3">{owerner} second Brain</div>
         </div>
-        <div className="pt-5 flex gap-4 flex-wrap ">
+        <div className="pt-5 flex gap-4 flex-wrap pl-2">
           {content.length ? (
             content.map(
               ({ type, title, link }: any, index: string | number) => (

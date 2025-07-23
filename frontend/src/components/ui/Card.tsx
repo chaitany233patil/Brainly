@@ -3,7 +3,6 @@ import { ShareIcon } from "../../icons/ShareIcon";
 import { Tag } from "./Tag";
 import { DeleteIcon } from "../../icons/DeleteIcon";
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
