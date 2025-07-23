@@ -2,9 +2,7 @@ import { ReactElement } from "react";
 import { ShareIcon } from "../../icons/ShareIcon";
 import { Tag } from "./Tag";
 import { DeleteIcon } from "../../icons/DeleteIcon";
-import axios from "axios";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 interface cardProps {
   type: "Youtube" | "Twitter" | "Text" | "Other";

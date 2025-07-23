@@ -5,7 +5,6 @@ import axios from "axios";
 import { DropDown } from "../components/ui/DropDown";
 import { CloseIcon } from "../icons/CloseIcon";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 export const NewContentForm = (props: {
   onClose: () => void;
@@ -18,8 +17,6 @@ export const NewContentForm = (props: {
   const [type, setType] = useState("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const navigate = useNavigate();
 
   function typeChange() {
     setType(typeRef.current?.value || "");
@@ -67,15 +64,11 @@ export const NewContentForm = (props: {
         link: textAreaRef.current?.value || newLink,
         type: typeRef.current?.value,
       };
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URI}/content`,
-        data,
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
+      await axios.post(`${import.meta.env.VITE_BACKEND_URI}/content`, data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       props.onAdd(data);
       setIsLoading(false);
       props.onClose();
