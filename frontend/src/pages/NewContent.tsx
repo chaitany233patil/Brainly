@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import axios from "axios";
@@ -49,7 +49,6 @@ export const NewContentForm = (props: {
     setIsLoading(true);
     try {
       let newLink = "";
-      console.log(type);
       if ((type == "Youtube" || type == "Twitter") && linkRef.current?.value) {
         newLink = linkRef.current?.value
           .replace("youtu.", "youtu")

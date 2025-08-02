@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { ShareIcon } from "../../icons/ShareIcon";
 import { Tag } from "./Tag";
 import { DeleteIcon } from "../../icons/DeleteIcon";
@@ -16,6 +16,19 @@ interface cardProps {
 }
 
 export const Card = (props: cardProps) => {
+  useEffect(() => {
+    const loadTwitter = () => {
+      // @ts-ignore
+      if (window.twttr && window.twttr.widgets) {
+        // @ts-ignore
+        window.twttr.widgets.load();
+      } else {
+        setTimeout(loadTwitter, 300);
+      }
+    };
+    loadTwitter();
+  }, []);
+
   const cardVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
     show: {
