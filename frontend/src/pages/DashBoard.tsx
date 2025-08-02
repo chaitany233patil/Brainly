@@ -21,7 +21,7 @@ function Dashboard() {
   const [filter, setFilter] = useState(localStorage.getItem("filter") || "all");
   const [talk, setTalk] = useState(false);
 
-  const { content, setContent } = useContent();
+  const { isLoading, content, setContent } = useContent();
 
   if (
     localStorage.getItem("token") == "undefined" ||
@@ -119,7 +119,22 @@ function Dashboard() {
               </span>
             </div>
           </div>
-          <div className="flex gap-4 flex-wrap">{filterContent}</div>
+          {isLoading ? (
+            <div className="text-center text-lg text-neutral-500 mt-20">
+              Warming up the brain cells… please hold 🧠⚡
+            </div>
+          ) : (
+            <div className="flex gap-4 flex-wrap">
+              {filterContent.length > 0 ? (
+                filterContent
+              ) : (
+                <span className="w-full text-center mt-20 text-lg text-neutral-500">
+                  Your brain is starving… feed it some tweets, videos, or docs
+                  🍔
+                </span>
+              )}
+            </div>
+          )}
           {talk && <BotChat />}
           <BotIcon onClick={() => setTalk((prev) => !prev)} />
         </div>
