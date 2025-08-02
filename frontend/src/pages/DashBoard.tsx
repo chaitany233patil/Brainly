@@ -127,7 +127,7 @@ function Dashboard() {
             </div>
           </div>
           {isLoading ? (
-            <div className="text-center text-lg text-neutral-500 mt-20">
+            <div className="text-center text-sm sm:text-md text-neutral-500 mt-20">
               Warming up the brain cells… please hold 🧠⚡
             </div>
           ) : (
@@ -135,7 +135,7 @@ function Dashboard() {
               {filterContent.length > 0 ? (
                 filterContent
               ) : (
-                <span className="w-full text-center mt-20 text-lg text-neutral-500">
+                <span className="w-full text-center mt-20 text-sm sm:text-md text-neutral-500">
                   Your brain is starving… feed it some tweets, videos, or docs
                   🍔
                 </span>

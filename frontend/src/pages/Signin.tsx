@@ -53,7 +53,6 @@ export const Signin = () => {
           password: formData.password,
         }
       );
-      console.log(response.data);
       if (response.data.success && response.data?.token) {
         // Store token in localStorage
         localStorage.setItem("token", response.data.token);
@@ -112,7 +111,7 @@ export const Signin = () => {
             <div>
               <Input
                 type="text"
-                placeholder="Username or Email"
+                placeholder="Username"
                 value={formData.username}
                 onChange={(e) => handleInputChange("username", e.target.value)}
                 disabled={isLoading}

@@ -66,11 +66,25 @@ export const Signup = () => {
         }
       );
       if (response.data.success) {
-        setSuccess("Account created successfully! Redirecting to sign in...");
-        setFormData({ email: "", username: "", password: "" });
-        setTimeout(() => {
-          navigate("/signin");
-        }, 1000);
+        setSuccess("Account created successfully! Redirecting to DashBoard...");
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URI}/signin`,
+          {
+            username: formData.username.trim(),
+            password: formData.password,
+          }
+        );
+        if (response.data.success && response.data?.token) {
+          // Store token in localStorage
+          localStorage.setItem("token", response.data.token);
+
+          // Navigate to dashboard/home
+          navigate("/");
+        } else {
+          setTimeout(() => {
+            navigate("/singin");
+          }, 1000);
+        }
       }
     } catch (err: any) {
       console.error("Signup error:", err);
