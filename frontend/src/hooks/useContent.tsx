@@ -16,7 +16,7 @@ export const useContent = () => {
         setIsloading(false);
         setContent(res.data.content);
       })
-      .catch((err) => {
+      .catch(() => {
         window.location.href = "https://brainly-landing-page.vercel.app/";
       });
   }, []);
