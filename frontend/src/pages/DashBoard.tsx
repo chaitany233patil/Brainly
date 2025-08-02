@@ -13,6 +13,7 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { BotIcon } from "../components/bot";
 import { BotChat } from "./BotChat";
+import { DocumentIcon } from "../icons/DocumentIcon";
 
 function Dashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -71,7 +72,13 @@ function Dashboard() {
       type={type}
       link={link}
       startIcon={
-        type === "Youtube" ? <YoutubeIcon /> : <TwitterIcon width="18" />
+        type === "Youtube" ? (
+          <YoutubeIcon />
+        ) : type == "Twitter" ? (
+          <TwitterIcon width="18" />
+        ) : (
+          <DocumentIcon />
+        )
       }
     />
   ));

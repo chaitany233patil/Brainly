@@ -15,7 +15,7 @@ export const DropDown = (props: {
         <option>Text</option>
         <option>Youtube</option>
         <option>Twitter</option>
-        <option>Other</option>
+        {/* <option>Other</option> */}
       </select>
     </>
   );

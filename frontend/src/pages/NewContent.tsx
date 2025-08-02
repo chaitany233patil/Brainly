@@ -49,7 +49,7 @@ export const NewContentForm = (props: {
     setIsLoading(true);
     try {
       let newLink = "";
-      console.log(textAreaRef.current?.value);
+      console.log(type);
       if ((type == "Youtube" || type == "Twitter") && linkRef.current?.value) {
         newLink = linkRef.current?.value
           .replace("youtu.", "youtu")
