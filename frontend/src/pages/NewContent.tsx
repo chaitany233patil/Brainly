@@ -55,7 +55,8 @@ export const NewContentForm = (props: {
           .replace("youtu.", "youtu")
           .replace("e/", "e.com/watch?v=")
           .split("&")[0]
-          .split("?si")[0];
+          .split("?si")[0]
+          .split("?t=")[0];
       } else {
         newLink = textAreaRef.current!.value;
       }
