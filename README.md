@@ -33,7 +33,7 @@ https://github.com/user-attachments/assets/your-video-file.mp4
 [![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
 
 <!-- Option 3: If you upload to another platform like Loom/Vimeo -->
-[Watch Demo Video](https://www.loom.com/share/your-video-id)
+[Watch Demo Video]([https://www.loom.com/share/your-video-id](https://www.loom.com/share/dfd9927cb3fb49f9a3f15a50e0d29c67?sid=262a530e-169f-4240-bbbf-f0cc62ff97e7))
 
 ## 🛠️ Technology Stack
 
