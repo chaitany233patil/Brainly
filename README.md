@@ -13,12 +13,12 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 
 ## ✨ Features
 
-- 📝 **Note Management**: Create, edit, and organize notes
+- 📝 **Note Management**: Create and organize notes
 - 📝 **Youtube & Tweet**: Save important youtube video and Tweet with ease
 - 🏷️ **Filtering**: Categorize and filter content with Filter Option
 - 📱 **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
 - 📤 **Share**: share your knowledge base with your freinds
-- 🔍 **Smart Search**:Planed to implement Powerful search functionality to find information instantly
+- 🔍 **Smart Search**: Planned to implement Powerful search functionality to find information instantly
 
 ## 🚀 Demo
 
