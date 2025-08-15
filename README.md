@@ -14,26 +14,22 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 ## ✨ Features
 
 - 📝 **Note Management**: Create, edit, and organize notes with rich text formatting
-- 🔗 **Link Connections**: Build interconnected knowledge graphs between your ideas
 - 🔍 **Smart Search**: Powerful search functionality to find information instantly
-- 🏷️ **Tagging System**: Categorize and filter content with custom tags
+- 🏷️ **Filtering**: Categorize and filter content with Filter Option
 - 📱 **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
-- 🌙 **Dark/Light Mode**: Toggle between themes for comfortable viewing
-- 💾 **Auto-Save**: Never lose your thoughts with automatic saving
-- 📤 **Import/Export**: Backup and share your knowledge base
-- 🔐 **Secure Storage**: Your data is encrypted and securely stored
+- 📤 **Share**: share your knowledge base with your freinds
 
 ## 🚀 Demo
 
-[Live Demo](https://your-demo-link.com) | [Screenshots](#screenshots)
+[Live Demo](https://brainly.chaitany.space) | [Screenshots](#screenshots)
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: [Add your frontend tech - e.g., React, Vue.js, HTML/CSS/JS]
-- **Backend**: [Add your backend tech - e.g., Node.js, Express, Python/Django]
-- **Database**: [Add your database - e.g., MongoDB, PostgreSQL, SQLite]
-- **Authentication**: [Add auth method - e.g., JWT, OAuth]
-- **Styling**: [Add styling framework - e.g., Tailwind CSS, Bootstrap]
+- **Frontend**: [Add your frontend tech - e.g., Reactjs, Nextjs, Typescript]
+- **Backend**: [Add your backend tech - e.g., Node.js, Express,Typescript]
+- **Database**: [Add your database - e.g., MongoDB]
+- **Authentication**: [Add auth method - e.g., JWT]
+- **Styling**: [Add styling framework - e.g., Tailwind CSS, Framer-motion]
 
 ## 📋 Prerequisites
 
