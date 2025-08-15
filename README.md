@@ -26,14 +26,6 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 
 ### 🎥 Demo Video
 
-<!-- Option 1: If you upload video to your repo -->
-https://github.com/user-attachments/assets/your-video-file.mp4
-
-<!-- Option 2: If you upload to YouTube -->
-[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
-
-<!-- Option 3: If you upload to another platform like Loom/Vimeo -->
-[Watch Demo Video]([https://www.loom.com/share/your-video-id](https://www.loom.com/share/dfd9927cb3fb49f9a3f15a50e0d29c67?sid=262a530e-169f-4240-bbbf-f0cc62ff97e7))
 
 ## 🛠️ Technology Stack
 
