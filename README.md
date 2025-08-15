@@ -130,7 +130,7 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 ```
 Brainly/
 ├── backend/
-│   └── src/     # Reusable UI components
+│   └── src/    
 │       ├── controllers/         
 │       ├── models/               
 │       ├── routes/               
