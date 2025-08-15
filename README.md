@@ -37,7 +37,7 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 - [Node.js](https://nodejs.org/) (v20.0 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Git](https://git-scm.com/)
-- [Database system] (PostgreSQL/MySQL/MongoDB - if applicable)
+- [Database system] MongoDB 
 
 ### For Docker Installation
 - [Docker](https://www.docker.com/get-started)
@@ -92,9 +92,9 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 2. **Set up environment variables**
    Edit the `.env` file with your Docker configuration:
    ```env
-   DATABASE_URL=postgresql://postgres:password@db:5432/brainly
+   DB_URL=mongodb://localhost:27017/brainly
    JWT_SECRET=your_jwt_secret
-   PORT=5173
+   PORT=8080
    ```
 
 3. **Start the application with Docker Compose**
