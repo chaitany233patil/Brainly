@@ -22,7 +22,18 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 
 ## 🚀 Demo
 
-[Live Demo](https://brainly.chaitany.space) | [Screenshots](#screenshots)
+[Live Demo](https://brainly.chaitany.space)
+
+### 🎥 Demo Video
+
+<!-- Option 1: If you upload video to your repo -->
+https://github.com/user-attachments/assets/your-video-file.mp4
+
+<!-- Option 2: If you upload to YouTube -->
+[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+
+<!-- Option 3: If you upload to another platform like Loom/Vimeo -->
+[Watch Demo Video](https://www.loom.com/share/your-video-id)
 
 ## 🛠️ Technology Stack
 
@@ -31,13 +42,14 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 - **Database**: MongoDB
 - **Authentication**: JWT
 - **Styling**: Tailwind CSS, Framer-motion
+
 ## 📋 Prerequisites
 
 ### For Manual Installation
 - [Node.js](https://nodejs.org/) (v20.0 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Git](https://git-scm.com/)
-- [Database system] MongoDB 
+- [MongoDB](https://www.mongodb.com/)
 
 ### For Docker Installation
 - [Docker](https://www.docker.com/get-started)
@@ -54,31 +66,39 @@ Brainly is a modern, intuitive second brain application designed to help you cap
    cd Brainly
    ```
 
-2. **Install dependencies**
+2. **Install backend dependencies**
    ```bash
    cd backend
    npm install
-   cd frontend
+   ```
+
+3. **Install frontend dependencies**
+   ```bash
+   cd ../frontend
    npm install
    ```
 
-3. **Set up environment variables**
-   Edit the `.env` file with your configuration:
+4. **Set up environment variables**
+   Create `.env` file in the backend directory:
    ```env
    DB_URL=your_database_url
    JWT_SECRET=your_jwt_secret
    PORT=8080
    ```
 
-5. **Start the development server**
+5. **Start the backend server**
    ```bash
    cd backend
    npm run dev
+   ```
+
+6. **Start the frontend server** (in a new terminal)
+   ```bash
    cd frontend
    npm run dev
    ```
 
-6. **Open your browser**
+7. **Open your browser**
    Navigate to `http://localhost:5173`
 
 ### 🐳 Option 2: Docker Compose (Recommended)
@@ -119,11 +139,12 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 
 | Task | Manual | Docker |
 |------|--------|--------|
-| Install & Run | `npm install && npm run dev` | `docker-compose up` |
-| Run in Background | `npm run dev &` | `docker-compose up -d` |
-| Stop Application | `Ctrl+C` | `docker-compose down` |
+| Install & Run Backend | `cd backend && npm install && npm run dev` | `docker-compose up` |
+| Install & Run Frontend | `cd frontend && npm install && npm run dev` | Already included above |
+| Run in Background | Run both in separate terminals | `docker-compose up -d` |
+| Stop Application | `Ctrl+C` in both terminals | `docker-compose down` |
 | View Logs | Terminal output | `docker-compose logs -f` |
-| Rebuild | `npm install` | `docker-compose up --build` |
+| Rebuild | `npm install` in both directories | `docker-compose up --build` |
 
 ## 📁 Project Structure
 
@@ -140,8 +161,8 @@ Brainly/
     └──src/            
        └── components/             
        ├── hooks/              
-       └── icons
-       └── pages
+       └── icons/
+       └── pages/
 ```
 
 ## 🔧 Configuration
@@ -150,14 +171,13 @@ Brainly/
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `PORT` | backend port | `8080` |
-| `PORT` | frontend port | `5173` |
+| `PORT` | Backend port | `8080` |
 | `DB_URL` | Database connection string | - |
 | `JWT_SECRET` | JWT signing secret | - |
 
 ## 📞 Contact
 
-**Chaitanya Patil** - [@your-twitter](https://x.com/PChaitanya529) - patilchaitany529@gmail.com
+**Chaitanya Patil** - [@PChaitanya529](https://x.com/PChaitanya529) - patilchaitany529@gmail.com
 
 Project Link: [https://github.com/chaitany233patil/Brainly](https://github.com/chaitany233patil/Brainly)
 
