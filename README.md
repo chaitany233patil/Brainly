@@ -30,17 +30,22 @@ Brainly is a modern, intuitive second brain application designed to help you cap
 - **Database**: [Add your database - e.g., MongoDB]
 - **Authentication**: [Add auth method - e.g., JWT]
 - **Styling**: [Add styling framework - e.g., Tailwind CSS, Framer-motion]
-
 ## 📋 Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (v14.0 or higher)
+### For Manual Installation
+- [Node.js](https://nodejs.org/) (v20.0 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Git](https://git-scm.com/)
-- [Database system] (if applicable)
+- [Database system] (PostgreSQL/MySQL/MongoDB - if applicable)
+
+### For Docker Installation
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Git](https://git-scm.com/)
 
 ## ⚡ Installation
+
+### 🔧 Option 1: Manual Installation
 
 1. **Clone the repository**
    ```bash
@@ -64,6 +69,7 @@ Before you begin, ensure you have the following installed:
    DATABASE_URL=your_database_url
    JWT_SECRET=your_jwt_secret
    PORT=3000
+   NODE_ENV=development
    ```
 
 4. **Initialize the database** (if applicable)
@@ -82,6 +88,54 @@ Before you begin, ensure you have the following installed:
 
 6. **Open your browser**
    Navigate to `http://localhost:3000`
+
+### 🐳 Option 2: Docker Compose (Recommended)
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/chaitany233patil/Brainly.git
+   cd Brainly
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit the `.env` file with your Docker configuration:
+   ```env
+   DATABASE_URL=postgresql://postgres:password@db:5432/brainly
+   JWT_SECRET=your_jwt_secret
+   PORT=3000
+   NODE_ENV=development
+   ```
+
+3. **Start the application with Docker Compose**
+   ```bash
+   docker-compose up
+   ```
+   
+   For background execution:
+   ```bash
+   docker-compose up -d
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+5. **Stop the application** (when needed)
+   ```bash
+   docker-compose down
+   ```
+
+### 🚀 Quick Start Commands
+
+| Task | Manual | Docker |
+|------|--------|--------|
+| Install & Run | `npm install && npm run dev` | `docker-compose up` |
+| Run in Background | `npm run dev &` | `docker-compose up -d` |
+| Stop Application | `Ctrl+C` | `docker-compose down` |
+| View Logs | Terminal output | `docker-compose logs -f` |
+| Rebuild | `npm install` | `docker-compose up --build` |
 
 ## 🎯 Usage
 
