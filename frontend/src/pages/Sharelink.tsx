@@ -40,7 +40,7 @@ export const ShareLink = (props: {
               onClick={() => {
                 setCopy(true);
                 navigator.clipboard.writeText(
-                  `${window.location.href}/api/v1/brain/share/${props.value}`
+                  `${window.location.href}api/v1/brain/share/${props.value}`
                 );
               }}
             >

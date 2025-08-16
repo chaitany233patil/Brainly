@@ -8,7 +8,8 @@ import { TwitterIcon } from "../icons/Twitter";
 
 export const ShareBrain = () => {
   const [content, setContent] = useState([]);
-  const [owerner, setOwerner] = useState("");
+  const [owerner, setOwerner] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { sharehash } = useParams();
   useEffect(() => {
     axios
@@ -16,7 +17,9 @@ export const ShareBrain = () => {
       .then((res) => {
         setOwerner(res.data.username);
         setContent(res.data.content);
-      });
+      })
+      .then(() => setIsLoading(false))
+      .catch(() => setIsLoading(false));
   }, []);
 
   return (
@@ -27,27 +30,33 @@ export const ShareBrain = () => {
           <div className="text-black ml-3">{owerner} second Brain</div>
         </div>
         <div className="pt-5 flex gap-4 flex-wrap pl-2">
-          {content.length ? (
-            content.map(
-              ({ type, title, link }: any, index: string | number) => (
-                <Card
-                  type={type}
-                  title={title}
-                  link={link}
-                  share={true}
-                  startIcon={
-                    type == "Youtube" ? (
-                      <YoutubeIcon />
-                    ) : (
-                      <TwitterIcon width="18" />
-                    )
-                  }
-                  index={index}
-                />
-              )
-            )
+          {isLoading ? (
+            <div>Loading...</div>
           ) : (
-            <div>Page Not Found</div>
+            <div>
+              {content.length ? (
+                content.map(
+                  ({ type, title, link }: any, index: string | number) => (
+                    <Card
+                      type={type}
+                      title={title}
+                      link={link}
+                      share={true}
+                      startIcon={
+                        type == "Youtube" ? (
+                          <YoutubeIcon />
+                        ) : (
+                          <TwitterIcon width="18" />
+                        )
+                      }
+                      index={index}
+                    />
+                  )
+                )
+              ) : (
+                <div>Page Not Found</div>
+              )}
+            </div>
           )}
         </div>
       </div>
