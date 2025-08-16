@@ -31,7 +31,7 @@ export const ShareLink = (props: {
             <Input
               disabled
               type="text"
-              placeholder="Username"
+              placeholder="loading.."
               value={props.value}
               className="w-full"
             />
