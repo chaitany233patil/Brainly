@@ -95,16 +95,11 @@ export const Card = (props: cardProps) => {
             </div>
           </div>
         )}
-        {/* {props.type == "Other" && (
-          <div key={props.index} className="w-full p-2 pt-5">
-            <div></div>
-          </div>
-        )} */}
 
-        <div className="flex">
+        {/* <div className="flex">
           <Tag title={"nvidia"} />
           <Tag title={"nvidia"} />
-        </div>
+        </div> */}
       </div>
     </motion.div>
   );

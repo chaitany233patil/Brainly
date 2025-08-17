@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 export interface buttonProps {
-  varient: "primary" | "secondary";
+  varient: "primary" | "secondary" | "special";
   size: "sm" | "md" | "lg";
   text: string;
   startIcon?: ReactElement;
@@ -52,6 +52,8 @@ const varientType = {
     "bg-[#5046e4] text-white hover:bg-[#6259f0] inset-shadow-sm inset-shadow-[#190be6]-500 ring-1",
   secondary:
     "bg-[#e0e7ff] text-purple-600 inset-shadow-sm inset-shadow-indigo-500/50 ring-1",
+  special:
+    "bg-gradient-to-r from-[#8956f3] via-purple-600 to-[#9010c6] text-white",
 };
 
 const defaultStyle = `rounded-md flex items-center font-medium cursor-pointer justify-center transition-all duration-150 relative`;

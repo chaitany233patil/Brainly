@@ -5,8 +5,9 @@ export function LogOutIcon() {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      width="24"
-      height="24"
+      className="hover:text-red-500 group-hover:rotate-35 transition-all duration-300"
+      width="23"
+      height="23"
     >
       <path
         strokeLinecap="round"

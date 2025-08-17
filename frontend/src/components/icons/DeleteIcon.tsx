@@ -6,7 +6,7 @@ export function DeleteIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="size-5 cursor-pointer"
+      className="size-5 cursor-pointer hover:text-red-500 hover:translate-y-[-4px] transition-all duration-300"
     >
       <path
         strokeLinecap="round"

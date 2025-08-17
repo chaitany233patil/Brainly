@@ -116,7 +116,12 @@ function Dashboard() {
         <Sidebar setFilter={setFilter} />
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
           <div className="w-full justify-between items-center my-3 mb-5 flex">
-            <div className="text-xl font-medium ml-2">Welcome, 👋</div>
+            <div className="flex flex-col pl-2">
+              <div className="text-2xl font-bold">Welcome, 👋</div>
+              <div className="text-neutral-500 text-sm">
+                Your beautiful brain collection
+              </div>
+            </div>
             <div className="flex mr-6 gap-2">
               <Button
                 varient="secondary"
@@ -130,7 +135,7 @@ function Dashboard() {
               />
               <span>
                 <Button
-                  varient="primary"
+                  varient="special"
                   text={window.innerWidth >= 640 ? "Add Content" : ""}
                   size={"sm"}
                   startIcon={<PlusIcon size={"lg"} />}

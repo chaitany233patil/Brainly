@@ -22,7 +22,7 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
           <BrainIcon />
         </div>
         <div
-          className="font-medium text-2xl ml-1 mt-2.5 cursor-pointer md:block hidden"
+          className="font-bold text-2xl mt-2.5 cursor-pointer md:block hidden bg-clip-text bg-gradient-to-r text-transparent from-[#8956f3] via-purple-600 to-[#9010c6]"
           onClick={() => changeFilter("all")}
         >
           Brainly
@@ -52,14 +52,16 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
         </div>
       </div>
       <div
-        className="absolute flex flex-row bottom-6 cursor-pointer text-gray-500 hover:text-gray-800 underline gap-2 items-center md:ml-8 ml-5"
+        className="absolute bottom-10 left-0 right-0 gap-2 flex items-center justify-center"
         onClick={() => {
           localStorage.removeItem("token");
           navigate("/signin");
         }}
       >
-        <LogOutIcon />
-        <span className="md:block hidden">LogOut</span>
+        <div className=" group flex gap-1 cursor-pointer hover:border-2 hover:rounded-xl py-3 px-6 text-gray-500 hover:text-red-500 transition-all duration-300">
+          <LogOutIcon />
+          <span className="md:block hidden">LogOut</span>
+        </div>
       </div>
     </div>
   );
