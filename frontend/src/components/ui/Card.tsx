@@ -48,7 +48,7 @@ export const Card = (props: cardProps) => {
     <motion.div variants={cardVariants} initial="hidden" animate="show">
       <div
         key={props.index}
-        className="max-w-80 min-w-80 border-1 border-gray-200 rounded-xl p-4 bg-white"
+        className="max-w-80 min-w-68 border-1 border-gray-200 rounded-xl p-4 bg-white"
       >
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -82,7 +82,7 @@ export const Card = (props: cardProps) => {
           </div>
         )}
         {props.type == "Twitter" && (
-          <div className="overflow-hidden max-h-[250px] mb-4">
+          <div className="overflow-hidden max-h-[250px] mb-4 min-w-30">
             <blockquote className="twitter-tweet">
               <a href={props.link.replace("x.com", "twitter.com")}></a>
             </blockquote>

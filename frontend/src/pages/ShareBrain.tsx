@@ -29,11 +29,11 @@ export const ShareBrain = () => {
           <BrainIcon />
           <div className="text-black ml-3">{owerner} second Brain</div>
         </div>
-        <div className="pt-5 flex gap-4 flex-wrap pl-2">
+        <div className="pt-5 pl-2">
           {isLoading ? (
             <div>Loading...</div>
           ) : (
-            <div>
+            <div className="flex gap-4 flex-wrap">
               {content.length ? (
                 content.map(
                   ({ type, title, link }: any, index: string | number) => (
