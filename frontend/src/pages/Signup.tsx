@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
+import { Button } from "../components/UI/Button";
+import { Input } from "../components/UI/Input";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -188,12 +188,12 @@ export const Signup = () => {
 
             {/* Submit button */}
             <Button
-              // type="submit"
+              type="submit"
               varient="primary"
               size="lg"
-              text={isLoading ? "Creating Account..." : "Sign Up"}
+              text={isLoading ? "Creating Account..." : "Sign up"}
               fullsize="w-full"
-              disabled={isLoading}
+              loading={isLoading}
               className="mt-6"
             />
 

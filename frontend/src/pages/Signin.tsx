@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
+import { Button } from "../components/UI/Button";
+import { Input } from "../components/UI/Input";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -145,10 +145,10 @@ export const Signin = () => {
             <Button
               type="submit"
               varient="primary"
-              size="md"
+              size="lg"
               text={isLoading ? "Signing In..." : "Sign In"}
               fullsize="w-full"
-              disabled={isLoading}
+              loading={isLoading}
               className="mt-6"
             />
 

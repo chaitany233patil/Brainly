@@ -1,34 +1,47 @@
-import { Button } from "../components/ui/Button";
-import { Card } from "../components/ui/Card";
-import { PlusIcon } from "../icons/PlusIcon";
-import { ShareIcon } from "../icons/ShareIcon";
-import { Sidebar } from "../components/Sidebar";
-import { NewContentForm } from "./NewContent";
 import { useState } from "react";
-import { useContent } from "../hooks/useContent";
-import { YoutubeIcon } from "../icons/YoutubeIcon";
-import { TwitterIcon } from "../icons/Twitter";
-import { ShareLink } from "./Sharelink";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
-import { BotIcon } from "../components/bot";
-import { BotChat } from "./BotChat";
-import { DocumentIcon } from "../icons/DocumentIcon";
+
+// UI
+import { Button } from "../components/UI/Button";
+import { Card } from "../components/UI/Card";
+
+//layout
+import { Sidebar } from "../components/layout/Sidebar";
+
+// Icons
+import { ShareIcon } from "../components/icons/ShareIcon";
+import { PlusIcon } from "../components/icons/PlusIcon";
+import { YoutubeIcon } from "../components/icons/YoutubeIcon";
+import { TwitterIcon } from "../components/icons/Twitter";
+import { DocumentIcon } from "../components/icons/DocumentIcon";
+import { BotIcon } from "../components/icons/bot";
+
+//Pop Models
+import { ShareLink } from "../components/models/Sharelink";
+import { NewContentForm } from "../components/models/NewContent";
+import { BotChat } from "../components/models/BotChat";
+
+//curtom hook
+import { useContent } from "../hooks/useContent";
 
 function Dashboard() {
+  const { isLoading, content, setContent } = useContent();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [shareLinkOpen, setShareLinkOpen] = useState<boolean>(false);
   const [shareLink, setShareLink] = useState<string>("");
-  const [filter, setFilter] = useState(localStorage.getItem("filter") || "all");
-  const [talk, setTalk] = useState(false);
+  const [filter, setFilter] = useState<string>(
+    localStorage.getItem("filter") || "all"
+  );
+  const [opentBot, setOpenBot] = useState(false);
 
-  const { isLoading, content, setContent } = useContent();
+  const navigate = useNavigate();
 
   if (
     localStorage.getItem("token") == "undefined" ||
     localStorage.getItem("token") == null
   ) {
-    return <Navigate to={"/signup"} />;
+    return navigate("/singin");
   }
 
   async function deleteItem(id: string | undefined) {
@@ -46,7 +59,7 @@ function Dashboard() {
     );
   }
 
-  async function getBrainLink(isShare: boolean) {
+  async function getSharableLink(isShare: boolean) {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URI}/brain/share`,
       { isShare: isShare },
@@ -89,7 +102,7 @@ function Dashboard() {
         <ShareLink
           onClose={() => setShareLinkOpen(false)}
           value={shareLink}
-          disbaledShare={() => getBrainLink(false)}
+          disbaledShare={() => getSharableLink(false)}
         />
       )}
       {isOpen && (
@@ -104,7 +117,7 @@ function Dashboard() {
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
           <div className="w-full justify-between items-center my-3 mb-5 flex">
             <div className="text-xl font-medium ml-2">Welcome, 👋</div>
-            <div className="flex mr-6">
+            <div className="flex mr-6 gap-2">
               <Button
                 varient="secondary"
                 text={window.innerWidth >= 640 ? "Share Brain" : ""}
@@ -112,7 +125,7 @@ function Dashboard() {
                 startIcon={<ShareIcon size={"md"} />}
                 onClick={() => {
                   setShareLinkOpen(true);
-                  getBrainLink(true);
+                  getSharableLink(true);
                 }}
               />
               <span>
@@ -142,8 +155,8 @@ function Dashboard() {
               )}
             </div>
           )}
-          {talk && <BotChat />}
-          <BotIcon onClick={() => setTalk((prev) => !prev)} />
+          {opentBot && <BotChat />}
+          <BotIcon onClick={() => setOpenBot((prev) => !prev)} />
         </div>
       </div>
     </>

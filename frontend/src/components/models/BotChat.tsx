@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import getBotResponse from "../ai";
+import getBotResponse from "../../ai";
 import { motion } from "framer-motion";
 
 export function BotChat() {
@@ -72,7 +72,7 @@ export function BotChat() {
       transition={{
         duration: 0.3,
       }}
-      className="absolute md:bottom-18 md:right-20 bottom-25 right-10"
+      className="absolute md:bottom-15 md:right-20 bottom-25 right-10"
     >
       <div className="bg-[#e0e7ff] h-140 max-w-100 flex flex-col rounded-3xl p-3 justify-between">
         <div

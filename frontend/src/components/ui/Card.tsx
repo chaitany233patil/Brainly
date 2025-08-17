@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from "react";
-import { ShareIcon } from "../../icons/ShareIcon";
-import { Tag } from "./Tag";
-import { DeleteIcon } from "../../icons/DeleteIcon";
+import { ShareIcon } from "../icons/ShareIcon";
+import { Tag } from "../UI/Tag";
+import { DeleteIcon } from "../icons/DeleteIcon";
 import { motion } from "framer-motion";
 
 interface cardProps {

@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
+import { Button } from "../UI/Button";
+import { Input } from "../UI/Input";
 import axios from "axios";
-import { DropDown } from "../components/ui/DropDown";
+import { DropDown } from "../UI/DropDown";
 import { CloseIcon } from "../icons/CloseIcon";
 import { motion } from "framer-motion";
 
@@ -70,7 +70,7 @@ export const NewContentForm = (props: {
         },
       });
       props.onAdd(data);
-      setIsLoading(false);
+      setIsLoading(false);  
       props.onClose();
     } catch (e) {
       alert("Please fill all information");
@@ -116,7 +116,12 @@ export const NewContentForm = (props: {
                 reference={titleRef}
                 className="mb-2 "
               />
-              <Input type="text" placeholder="link" reference={linkRef} />
+              <Input
+                type="text"
+                placeholder="link"
+                reference={linkRef}
+                className="mb-2"
+              />
             </>
           ) : type == "Text" ? (
             <>
@@ -147,6 +152,7 @@ export const NewContentForm = (props: {
             varient="primary"
             size="lg"
             text={isLoading ? "Adding..." : "Add Content"}
+            loading={isLoading}
             fullsize="w-full"
             onClick={addContent}
           />

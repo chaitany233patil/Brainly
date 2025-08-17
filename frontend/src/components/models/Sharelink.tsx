@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
+import { Button } from "../UI/Button";
+import { Input } from "../UI/Input";
 import { CopyIcon } from "../icons/CopyIcon";
 import { CopyDone } from "../icons/CopyDone";
 import { motion } from "framer-motion";
@@ -23,11 +23,11 @@ export const ShareLink = (props: {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 sm:min-w-sm"
+          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 sm:min-w-sm gap-2"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="font-medium text-xl mb-3">Share link</div>
-          <div className="flex items-center justify-center">
+          <div className="flex gap-2 px-2 items-center justify-center w-full">
             <Input
               disabled
               type="text"
@@ -44,7 +44,7 @@ export const ShareLink = (props: {
                 );
               }}
             >
-              {copy ? <CopyDone /> : <CopyIcon size={"size-8"} />}
+              {copy ? <CopyDone /> : <CopyIcon size={"size-7"} />}
             </div>
           </div>
           <Button

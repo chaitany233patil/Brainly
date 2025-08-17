@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Card } from "../components/ui/Card";
+import { Card } from "../components/UI/Card";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { BrainIcon } from "../icons/Brain";
-import { YoutubeIcon } from "../icons/YoutubeIcon";
-import { TwitterIcon } from "../icons/Twitter";
+import { BrainIcon } from "../components/icons/Brain";
+import { YoutubeIcon } from "../components/icons/YoutubeIcon";
+import { TwitterIcon } from "../components/icons/Twitter";
 
 export const ShareBrain = () => {
   const [content, setContent] = useState([]);
