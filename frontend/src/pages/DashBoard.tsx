@@ -26,7 +26,7 @@ import { BotChat } from "../components/models/BotChat";
 import { useContent } from "../hooks/useContent";
 import { DeleteModel } from "../components/models/DeleteModel";
 
-function Dashboard() {
+export function Dashboard() {
   const { isLoading, content, setContent } = useContent();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [shareLinkOpen, setShareLinkOpen] = useState<boolean>(false);
@@ -182,5 +182,3 @@ function Dashboard() {
     </>
   );
 }
-
-export default Dashboard;
