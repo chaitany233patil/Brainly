@@ -10,7 +10,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URL=mongodb://mongo:27017/brainly
+      - DB_URI=mongodb://mongo:27017/brainly
     networks:
       - my_network
 
