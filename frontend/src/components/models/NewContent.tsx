@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Button } from "../UI/Button";
-import { Input } from "../UI/Input";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
 import axios from "axios";
-import { DropDown } from "../UI/DropDown";
+import { DropDown } from "../ui/DropDown";
 import { CloseIcon } from "../icons/CloseIcon";
 import { motion } from "framer-motion";
 
@@ -70,7 +70,7 @@ export const NewContentForm = (props: {
         },
       });
       props.onAdd(data);
-      setIsLoading(false);  
+      setIsLoading(false);
       props.onClose();
     } catch (e) {
       alert("Please fill all information");
@@ -79,7 +79,7 @@ export const NewContentForm = (props: {
 
   return (
     <>
-      <div className="h-screen w-screen absolute bg-gray-500 opacity-90 z-10"></div>
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10"></div>
       <div
         className="absolute inset-0 flex justify-center items-center z-10"
         onClick={props.onClose}
@@ -88,7 +88,7 @@ export const NewContentForm = (props: {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90  sm:min-w-sm animate-[popUp]"
+          className="bg-neutral-100 p-4 rounded-xl flex flex-col items-center min-w-90  sm:min-w-sm animate-[popUp]"
           onClick={(e) => e.stopPropagation()}
         >
           <div
@@ -149,7 +149,7 @@ export const NewContentForm = (props: {
           ) : null}
 
           <Button
-            varient="primary"
+            varient="special"
             size="lg"
             text={isLoading ? "Adding..." : "Add Content"}
             loading={isLoading}

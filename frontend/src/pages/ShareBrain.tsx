@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card } from "../components/UI/Card";
+import { Card } from "../components/ui/Card";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BrainIcon } from "../components/icons/Brain";

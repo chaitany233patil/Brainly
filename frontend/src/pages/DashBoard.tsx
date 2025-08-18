@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // UI
-import { Button } from "../components/UI/Button";
-import { Card } from "../components/UI/Card";
+import { Button } from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
 
 //layout
 import { Sidebar } from "../components/layout/Sidebar";

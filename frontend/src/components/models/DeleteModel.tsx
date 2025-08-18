@@ -1,6 +1,6 @@
 import { TriangleAlert } from "lucide-react";
 import { CloseIcon } from "../icons/CloseIcon";
-import { Button } from "../UI/Button";
+import { Button } from "../ui/Button";
 
 interface IDeleteModel {
   onDelete?: () => void;

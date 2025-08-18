@@ -3,7 +3,7 @@ import { DocumentIcon } from "../icons/DocumentIcon";
 import { LogOutIcon } from "../icons/LogOut";
 import { TwitterIcon } from "../icons/Twitter";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
-import { SidebarItem } from "../UI/SidebarItem";
+import { SidebarItem } from "../ui/SidebarItem";
 import { useNavigate } from "react-router-dom";
 
 export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {

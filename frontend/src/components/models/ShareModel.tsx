@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Button } from "../UI/Button";
-import { Input } from "../UI/Input";
-import { CopyIcon } from "../icons/CopyIcon";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
 import { CopyDone } from "../icons/CopyDone";
 import { motion } from "framer-motion";
 import { CloseIcon } from "../icons/CloseIcon";
+import { Copy } from "lucide-react";
 
 export const ShareLink = (props: {
   onClose: () => void;
@@ -15,7 +15,7 @@ export const ShareLink = (props: {
   const [disabledShare, setDisabledShare] = useState("Disbaled Share");
   return (
     <>
-      <div className="h-screen w-screen absolute bg-gray-600 opacity-90 z-10"></div>
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10"></div>
       <div
         className="absolute h-screen w-screen flex justify-center items-center z-10"
         onClick={props.onClose}
@@ -24,7 +24,7 @@ export const ShareLink = (props: {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 sm:min-w-sm gap-2"
+          className="bg-neutral-100 p-4 rounded-xl flex flex-col items-center min-w-90 sm:min-w-sm gap-2"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center w-full mb-2">
@@ -55,7 +55,7 @@ export const ShareLink = (props: {
                 );
               }}
             >
-              {copy ? <CopyDone /> : <CopyIcon size={"size-7"} />}
+              {copy ? <CopyDone /> : <Copy size={30} />}
             </div>
           </div>
           <Button
