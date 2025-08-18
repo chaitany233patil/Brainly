@@ -4,6 +4,7 @@ import { Input } from "../UI/Input";
 import { CopyIcon } from "../icons/CopyIcon";
 import { CopyDone } from "../icons/CopyDone";
 import { motion } from "framer-motion";
+import { CloseIcon } from "../icons/CloseIcon";
 
 export const ShareLink = (props: {
   onClose: () => void;
@@ -26,7 +27,17 @@ export const ShareLink = (props: {
           className="bg-white p-4 rounded-2xl flex flex-col items-center min-w-90 sm:min-w-sm gap-2"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="font-medium text-xl mb-3">Share link</div>
+          <div className="flex items-center w-full mb-2">
+            <div className="font-medium text-xl flex-1 text-center">
+              Share link
+            </div>
+            <div
+              className="self-end hover:bg-neutral-400/30 p-2 rounded-lg cursor-pointer transition-all duration-300"
+              onClick={props.onClose}
+            >
+              <CloseIcon size="size-6" />
+            </div>
+          </div>
           <div className="flex gap-2 px-2 items-center justify-center w-full">
             <Input
               disabled

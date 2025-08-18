@@ -58,7 +58,7 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
           navigate("/signin");
         }}
       >
-        <div className=" group flex gap-1 cursor-pointer hover:border-2 hover:rounded-xl py-3 px-6 text-gray-500 hover:text-red-500 transition-all duration-300">
+        <div className=" group flex gap-1 cursor-pointer hover:border-2  hover:rounded-xl py-3 px-6 text-gray-500 hover:text-red-500 transition-all duration-300">
           <LogOutIcon />
           <span className="md:block hidden">LogOut</span>
         </div>

@@ -1,4 +1,4 @@
-export function CloseIcon(props: { size: string }) {
+export function   CloseIcon(props: { size: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

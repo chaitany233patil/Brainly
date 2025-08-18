@@ -18,12 +18,13 @@ import { DocumentIcon } from "../components/icons/DocumentIcon";
 import { BotIcon } from "../components/icons/bot";
 
 //Pop Models
-import { ShareLink } from "../components/models/Sharelink";
+import { ShareLink } from "../components/models/ShareModel";
 import { NewContentForm } from "../components/models/NewContent";
 import { BotChat } from "../components/models/BotChat";
 
 //curtom hook
 import { useContent } from "../hooks/useContent";
+import { DeleteModel } from "../components/models/DeleteModel";
 
 function Dashboard() {
   const { isLoading, content, setContent } = useContent();
@@ -34,7 +35,7 @@ function Dashboard() {
     localStorage.getItem("filter") || "all"
   );
   const [opentBot, setOpenBot] = useState(false);
-
+  const [deleteModel, setDeleteModel] = useState({ model: false, id: null });
   const navigate = useNavigate();
 
   if (
@@ -84,6 +85,7 @@ function Dashboard() {
       title={title}
       type={type}
       link={link}
+      onDelete={() => setDeleteModel(() => ({ model: true, id: _id }))}
       startIcon={
         type === "Youtube" ? (
           <YoutubeIcon />
@@ -112,7 +114,7 @@ function Dashboard() {
           onAdd={(newItem) => setContent((prev) => [newItem, ...prev])}
         />
       )}
-      <div className="w-screen h-screen flex">
+      <div className="relative w-screen h-screen flex">
         <Sidebar setFilter={setFilter} />
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
           <div className="w-full justify-between items-center my-3 mb-5 flex">
@@ -163,6 +165,19 @@ function Dashboard() {
           {opentBot && <BotChat />}
           <BotIcon onClick={() => setOpenBot((prev) => !prev)} />
         </div>
+
+        {/* Delete Model */}
+        {deleteModel.model && (
+          <DeleteModel
+            onDelete={() => {
+              deleteItem(deleteModel.id!);
+              setDeleteModel((prev) => ({ ...prev, model: false }));
+            }}
+            onCancel={() =>
+              setDeleteModel((prev) => ({ ...prev, model: false }))
+            }
+          />
+        )}
       </div>
     </>
   );

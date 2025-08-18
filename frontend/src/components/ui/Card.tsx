@@ -1,6 +1,5 @@
 import { ReactElement, useEffect } from "react";
 import { ShareIcon } from "../icons/ShareIcon";
-import { Tag } from "../UI/Tag";
 import { DeleteIcon } from "../icons/DeleteIcon";
 import { motion } from "framer-motion";
 
@@ -13,6 +12,7 @@ interface cardProps {
   share?: boolean;
   index: number | string;
   onClick?: () => void;
+  onDelete?: () => void;
 }
 
 export const Card = (props: cardProps) => {
@@ -45,7 +45,12 @@ export const Card = (props: cardProps) => {
 
   return (
     //@ts-ignore
-    <motion.div variants={cardVariants} initial="hidden" animate="show">
+    <motion.div
+      variants={cardVariants as any}
+      initial="hidden"
+      animate="show"
+      key={props.index}
+    >
       <div
         key={props.index}
         className="max-w-80 min-w-68 border-1 border-gray-200 rounded-xl p-4 bg-white"
@@ -62,7 +67,7 @@ export const Card = (props: cardProps) => {
               </a>
             ) : null}
             {!props.share && (
-              <div onClick={props.onClick}>
+              <div onClick={props.onDelete}>
                 <DeleteIcon />
               </div>
             )}
