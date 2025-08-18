@@ -6,7 +6,7 @@ import { BrainIcon } from "../components/icons/Brain";
 import { YoutubeIcon } from "../components/icons/YoutubeIcon";
 import { TwitterIcon } from "../components/icons/Twitter";
 
-export const ShareBrain = () => {
+export const Sharebrain = () => {
   const [content, setContent] = useState([]);
   const [owerner, setOwerner] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
