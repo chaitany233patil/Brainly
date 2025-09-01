@@ -148,17 +148,23 @@ export function Dashboard() {
           </div>
           {isLoading ? (
             <div className="text-center text-sm sm:text-md text-neutral-500 mt-20">
-              Warming up the brain cells… please hold 🧠⚡
+              Loading...
             </div>
           ) : (
             <div className="flex gap-4 flex-wrap">
               {filterContent.length > 0 ? (
                 filterContent
               ) : (
-                <span className="w-full text-center mt-20 text-sm sm:text-md text-neutral-500">
-                  Your brain is starving… feed it some tweets, videos, or docs
-                  🍔
-                </span>
+                <div className="max-w-sm mx-auto bg-yellow-200 bg-opacity-70 backdrop-blur-md rounded-lg p-4">
+                  <p className="text-sm leading-4 text-center">
+                    <b>Note:</b> Our app is hosted on a free server. The first
+                    request may take 50–60 seconds to load, but it will be fast
+                    after that.
+                    <br />
+                    <br />
+                    Loading...
+                  </p>
+                </div>
               )}
             </div>
           )}

@@ -91,7 +91,15 @@ export const Signin = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-indigo-400 to-blue-600 opacity-90"></div>
 
       {/* Main container */}
-      <div className="fixed inset-0 flex justify-center items-center p-4">
+      <div className="fixed inset-0 flex flex-col gap-8 justify-center items-center p-4">
+        {/* note */}
+        <div className="max-w-sm bg-neutral-100/30 bg-opacity-70 backdrop-blur-md rounded-lg p-4">
+          <p className="text-sm leading-4 text-center">
+            <b>Note:</b> Our app is hosted on a free server. The first request
+            may take 50–60 seconds to load, but it will be fast after that.
+          </p>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
