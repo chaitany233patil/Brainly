@@ -2,6 +2,7 @@ import { ReactElement, useEffect } from "react";
 import { ShareIcon } from "../icons/ShareIcon";
 import { DeleteIcon } from "../icons/DeleteIcon";
 import { motion } from "framer-motion";
+import { Fullscreen } from "lucide-react";
 
 interface cardProps {
   type: "Youtube" | "Twitter" | "Text" | "Other";
@@ -13,6 +14,7 @@ interface cardProps {
   index: number | string;
   onClick?: () => void;
   onDelete?: () => void;
+  onZoomIn?: () => void;
 }
 
 export const Card = (props: cardProps) => {
@@ -53,14 +55,17 @@ export const Card = (props: cardProps) => {
     >
       <div
         key={props.index}
-        className="max-w-80 min-w-68 border-1 border-gray-200 rounded-xl p-4 bg-white"
+        className="max-h-70 h-full overflow-hidden max-w-80 min-w-68 border-1 border-gray-200 rounded-xl p-4 bg-white group shadow-xl"
       >
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="pr-2 text-gray-600 ">{props.startIcon}</div>
             <span className="font-medium">{props.title}</span>
           </div>
-          <div className="flex items-center text-gray-600 gap-2">
+          <div className="hidden group-hover:flex items-center text-gray-600 gap-2 cursor-pointer">
+            <div onClick={props.onZoomIn}>
+              <Fullscreen className="text-neutral-500" size={18} />
+            </div>
             {props.type != "Other" && props.type != "Text" ? (
               <a href={props.link} target="_blank">
                 <ShareIcon size={"md"} />
@@ -100,11 +105,6 @@ export const Card = (props: cardProps) => {
             </div>
           </div>
         )}
-
-        {/* <div className="flex">
-          <Tag title={"nvidia"} />
-          <Tag title={"nvidia"} />
-        </div> */}
       </div>
     </motion.div>
   );

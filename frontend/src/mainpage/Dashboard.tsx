@@ -25,9 +25,15 @@ import { BotChat } from "../components/models/BotChat";
 //curtom hook
 import { useContent } from "../hooks/useContent";
 import { DeleteModel } from "../components/models/DeleteModel";
+import { X } from "lucide-react";
 
 export function Dashboard() {
   const { isLoading, content, setContent } = useContent();
+  const [currentWindow, setCurrentWindow] = useState({
+    status: false,
+    title: "",
+    link: "",
+  });
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [shareLinkOpen, setShareLinkOpen] = useState<boolean>(false);
   const [shareLink, setShareLink] = useState<string>("");
@@ -79,6 +85,9 @@ export function Dashboard() {
   const filterContent = filteredContent.map(({ link, title, type, _id }) => (
     <Card
       onClick={() => deleteItem(_id)}
+      onZoomIn={() =>
+        setCurrentWindow({ status: true, link: link, title: title })
+      }
       key={_id}
       index={_id}
       id={_id}
@@ -120,7 +129,7 @@ export function Dashboard() {
           <div className="w-full justify-between items-center my-3 mb-5 flex">
             <div className="flex flex-col pl-2">
               <div className="text-2xl font-bold">Welcome, 👋</div>
-              <div className="text-neutral-500 text-sm">
+              <div className="text-neutral-600 text-xs">
                 Your beautiful brain collection
               </div>
             </div>
@@ -162,7 +171,7 @@ export function Dashboard() {
               {filterContent.length > 0 ? (
                 filterContent
               ) : (
-                <div className="text-center text-sm sm:text-md text-neutral-500 mt-20">
+                <div className="flex justify-center text-sm sm:text-md text-neutral-500 mt-20">
                   Empty.
                 </div>
               )}
@@ -183,6 +192,47 @@ export function Dashboard() {
               setDeleteModel((prev) => ({ ...prev, model: false }))
             }
           />
+        )}
+
+        {/* Zoom in model for youtube video */}
+        {currentWindow.status && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="relative w-full max-w-4xl mx-auto bg-neutral-800 rounded-xl shadow-2xl overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 bg-neutral-700">
+                <div className="flex items-center gap-3">
+                  <YoutubeIcon />
+                  <span className="text-white font-medium">
+                    {currentWindow.title}
+                  </span>
+                </div>
+                <button
+                  onClick={() =>
+                    setCurrentWindow((prev) => ({ ...prev, status: false }))
+                  }
+                  className="text-gray-400 hover:text-white transition-colors p-1 cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Video Container */}
+              <div
+                className="relative w-full"
+                style={{ paddingBottom: "56.25%" }}
+              >
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={currentWindow.link.replace("watch?v=", "embed/")}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </>
