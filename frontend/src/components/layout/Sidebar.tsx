@@ -13,7 +13,7 @@ export const Sidebar = (props: { setFilter: (arg0: string) => void }) => {
   }
   const navigate = useNavigate();
   return (
-    <div className="h-screen fixed md:w-60 border-r-2 border-gray-300">
+    <div className="fixed top-0 bottom-0 md:w-60">
       <div className="text-2xl flex items-center p-2">
         <div
           className="text-purple-600 md:pl-3 pr-2 mt-3"

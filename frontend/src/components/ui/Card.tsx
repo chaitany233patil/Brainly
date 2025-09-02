@@ -62,10 +62,12 @@ export const Card = (props: cardProps) => {
             <div className="pr-2 text-gray-600 ">{props.startIcon}</div>
             <span className="font-medium">{props.title}</span>
           </div>
-          <div className="hidden group-hover:flex items-center text-gray-600 gap-2 cursor-pointer">
-            <div onClick={props.onZoomIn}>
-              <Fullscreen className="text-neutral-500" size={18} />
-            </div>
+          <div className="flex md:hidden group-hover:flex items-center text-gray-600 gap-2 cursor-pointer">
+            {props.type == "Youtube" && (
+              <div onClick={props.onZoomIn}>
+                <Fullscreen className="text-neutral-500" size={18} />
+              </div>
+            )}
             {props.type != "Other" && props.type != "Text" ? (
               <a href={props.link} target="_blank">
                 <ShareIcon size={"md"} />

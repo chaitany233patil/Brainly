@@ -128,8 +128,8 @@ export function Dashboard() {
         <div className="md:ml-60 ml-14 bg-gray-100 pl-4 min-h-screen overflow-y-auto w-full">
           <div className="w-full justify-between items-center my-3 mb-5 flex">
             <div className="flex flex-col pl-2">
-              <div className="text-2xl font-bold">Welcome, 👋</div>
-              <div className="text-neutral-600 text-xs">
+              <div className="text-xl sm:text-2xl font-bold">Welcome, 👋</div>
+              <div className="text-neutral-600 text-xs hidden md:block">
                 Your beautiful brain collection
               </div>
             </div>
@@ -171,14 +171,16 @@ export function Dashboard() {
               {filterContent.length > 0 ? (
                 filterContent
               ) : (
-                <div className="flex justify-center text-sm sm:text-md text-neutral-500 mt-20">
+                <div className="flex justify-center items-center text-sm sm:text-md text-neutral-500 mt-20">
                   Empty.
                 </div>
               )}
             </div>
           )}
-          {opentBot && <BotChat />}
-          <BotIcon onClick={() => setOpenBot((prev) => !prev)} />
+          <span className="hidden md:block">
+            {opentBot && <BotChat />}
+            <BotIcon onClick={() => setOpenBot((prev) => !prev)} />
+          </span>
         </div>
 
         {/* Delete Model */}
